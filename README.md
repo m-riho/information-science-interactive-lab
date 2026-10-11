@@ -20,7 +20,7 @@ npm run build
 npm run preview
 ```
 
-ビルド後のプレビューは `http://localhost:4173/csa-interactive-demos/`。開発時のbaseは `/`、ビルド時は `/csa-interactive-demos/` です。生成物はdist。
+ビルド後のプレビューは `http://localhost:4173/information-science-interactive-lab/`。開発時のbaseは `/`、ビルド時は `/information-science-interactive-lab/` です。生成物はdist。
 
 ## できること
 
@@ -105,25 +105,23 @@ npm run preview
 - 入力変更は全段階の中間値と出力に即時反映し、「最初から再生」で計算順を確認できます。回路変更は段階を初期化。リセットは基本AND・入力0/0に戻し、動きを減らす設定は維持します。非表示時は再生を休止し、画面遷移時に描画・イベントを破棄します。
 - 直接リンクは `#/sessions/03/logic-gates`。
 
-## GitHub Pagesへの公開（ユーザーが許可した後に実施）
+## GitHub Pagesへの公開
 
-仮のGitHubユーザー名は `YOUR_GITHUB_USER`、仮のリポジトリ名は `csa-interactive-demos`。
+- 公開リポジトリ：<https://github.com/m-riho/information-science-interactive-lab>
+- 教材URL：<https://m-riho.github.io/information-science-interactive-lab/>
+- 加算器への直接リンク：<https://m-riho.github.io/information-science-interactive-lab/#/sessions/03/binary-adder>
 
-1. GitHubで空のリポジトリを作成します。別名の場合は `vite.config.ts` の `repository` を変更します。
-2. ローカルのmainブランチにファイルをコミットし、公開先を設定します。
+GitHubのSettings → Pages → Build and deployment → Sourceは **GitHub Actions** を使用します。
+`.github/workflows/deploy.yml` はmainへのpush時に `npm ci → typecheck → test → build → Pagesデプロイ` を実行します。Actionsから手動実行もできます。
+
+更新を公開するときは、変更を確認・コミットした後に次を実行します。
 
 ```bash
-git add .
-git commit -m "情報科学Aのサイト基盤と回転円盤デモを追加"
-git remote add origin https://github.com/YOUR_GITHUB_USER/csa-interactive-demos.git
-git push -u origin main
+git push origin main
 ```
 
-3. Settings → Pages → Build and deployment → Sourceを **GitHub Actions** にします。
-4. `.github/workflows/deploy.yml` はmainへのpush時に `npm ci → typecheck → test → build → Pagesデプロイ` を実行します。Settings変更が初回pushより後ならActionsから手動実行できます。
-5. 公開URLは `https://YOUR_GITHUB_USER.github.io/csa-interactive-demos/`。円盤への直接リンクは末尾に `#/sessions/03/wheel-aliasing` を付けます。
-
-この作業ではリモート設定・push・公開を行いません。GitHub Pagesは静的公開であり、成績や操作履歴を収集しません。
+別のリポジトリへ公開する場合は、GitHubでリポジトリを作成し、`vite.config.ts` の `repository` とgitのoriginを公開先に合わせ、PagesのSourceをGitHub Actionsに設定してください。
+GitHub Pagesは静的公開です。操作履歴は収集せず、成績評価にも関係ありません。
 
 ## デモの追加
 
