@@ -6,6 +6,7 @@ import { mountSpatial } from "./demos/spatial-sampling/view";
 import { mountRolling } from "./demos/rolling-shutter/view";
 import { mountMemory } from "./demos/memory-hierarchy/view";
 import { mountMoore } from "./demos/moores-law/view";
+import { mountLogic } from "./demos/logic-gates/view";
 const publishedCount = demos.filter((demo) => demo.ready).length;
 const root = document.querySelector<HTMLElement>("#content");
 if (!root) throw new Error("本文の要素がありません");
@@ -28,15 +29,17 @@ function render(): void {
     if (demo?.ready) {
       document.title = `${demo.title} | 情報科学A`;
       cleanup =
-        demo.slug === "moores-law"
-          ? mountMoore(root)
-          : demo.slug === "memory-hierarchy"
-            ? mountMemory(root)
-            : demo.slug === "rolling-shutter"
-              ? mountRolling(root)
-              : demo.slug === "spatial-sampling"
-                ? mountSpatial(root)
-                : mountWheel(root);
+        demo.slug === "logic-gates"
+          ? mountLogic(root)
+          : demo.slug === "moores-law"
+            ? mountMoore(root)
+            : demo.slug === "memory-hierarchy"
+              ? mountMemory(root)
+              : demo.slug === "rolling-shutter"
+                ? mountRolling(root)
+                : demo.slug === "spatial-sampling"
+                  ? mountSpatial(root)
+                  : mountWheel(root);
     } else if (demo) {
       document.title = `${demo.title}（準備中） | 情報科学A`;
       root.innerHTML = `<a class="back" href="#/sessions/03">← 第3回のデモ一覧</a><section class="empty"><span class="demo-icon" aria-hidden="true">${demo.icon}</span><p class="eyebrow">COMING SOON</p><h1>${demo.title}</h1><p>${demo.description}</p><p>このデモは準備中です。今は「回転円盤とフレームレート」を体験できます。</p><a class="button primary" href="#/sessions/03/wheel-aliasing">公開中のデモへ →</a></section>`;

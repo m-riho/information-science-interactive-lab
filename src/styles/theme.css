@@ -788,3 +788,95 @@ footer {
     font-size: 12px;
   }
 }
+
+#logic-canvas {
+  width: 100%;
+  line-height: 0;
+}
+.logic-padding {
+  padding: 12px 20px;
+}
+.logic-inputs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.logic-inputs button[aria-pressed="true"] {
+  background: var(--brand);
+  color: white;
+}
+.logic-lamp {
+  border: 2px solid var(--brand);
+  border-radius: 24px;
+  padding: 8px 20px;
+  font-weight: 700;
+}
+.logic-lamp.on {
+  background: var(--brand);
+  color: white;
+}
+.logic-learning {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 20px;
+}
+.logic-learning table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.logic-learning td,
+.logic-learning th {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.logic-learning caption {
+  font-size: 13px;
+  text-align: left;
+}
+.logic-learning tr.current {
+  background: var(--brand-light);
+  font-weight: 700;
+}
+.logic-learning h2,
+#logic-stages h2 {
+  font-size: 18px;
+}
+#logic-switch-figure svg {
+  width: 100%;
+  max-width: 450px;
+}
+#logic-switch-figure text {
+  fill: #32184c;
+  stroke: none;
+  font-size: 12px;
+}
+@media (max-width: 650px) {
+  .logic-learning {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Canvasの入力端子に重ねる、キーボードでも操作できるクリック領域。 */
+#logic-canvas { position: relative; }
+#logic-canvas .logic-terminal {
+  position: absolute;
+  left: 2px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+#logic-canvas .logic-terminal:hover,
+#logic-canvas .logic-terminal:focus-visible {
+  border-color: var(--brand, #4B286D);
+  background: rgb(75 40 109 / 10%);
+}
+#logic-canvas .logic-terminal[hidden] { display: none; }

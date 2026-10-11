@@ -46,7 +46,7 @@ export const demos = [
     description: "0と1のスイッチを組み合わせて、論理をつくろう。",
     tag: "論理回路",
     icon: "⋂",
-    ready: false,
+    ready: true,
   },
   {
     slug: "binary-adder",
