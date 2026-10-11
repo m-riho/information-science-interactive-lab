@@ -38,7 +38,7 @@ export const demos = [
     description: "小さなトランジスタの数から、コンピュータの歴史を眺めよう。",
     tag: "コンピュータの進化",
     icon: "↗",
-    ready: false,
+    ready: true,
   },
   {
     slug: "logic-gates",

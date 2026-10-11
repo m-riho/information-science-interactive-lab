@@ -722,3 +722,69 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+#moore-canvas {
+  width: 100%;
+  line-height: 0;
+}
+.moore-legend {
+  padding: 0 20px;
+  text-align: center;
+  font-size: 13px;
+}
+#moore-axis-note {
+  padding: 0 20px;
+}
+.moore-models {
+  padding: 20px;
+}
+.moore-models h2 {
+  font-size: 17px;
+}
+.moore-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  font-size: 13px;
+}
+.moore-values strong {
+  display: block;
+  color: var(--brand);
+  font-size: 18px;
+}
+.moore-data {
+  margin: 32px 0;
+}
+.moore-table-wrap {
+  overflow-x: auto;
+}
+.moore-data table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.moore-data th,
+.moore-data td {
+  border-bottom: 1px solid var(--border);
+  padding: 12px;
+  text-align: left;
+}
+.moore-data caption {
+  text-align: left;
+  font-size: 12px;
+  color: #615b6c;
+  margin-bottom: 12px;
+}
+.moore-data thead {
+  background: var(--brand-light);
+}
+@media (max-width: 540px) {
+  .moore-values {
+    grid-template-columns: 1fr;
+  }
+  .moore-data th,
+  .moore-data td {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
