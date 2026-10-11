@@ -861,7 +861,9 @@ footer {
 }
 
 /* Canvasの入力端子に重ねる、キーボードでも操作できるクリック領域。 */
-#logic-canvas { position: relative; }
+#logic-canvas {
+  position: relative;
+}
 #logic-canvas .logic-terminal {
   position: absolute;
   left: 2px;
@@ -876,7 +878,119 @@ footer {
 }
 #logic-canvas .logic-terminal:hover,
 #logic-canvas .logic-terminal:focus-visible {
-  border-color: var(--brand, #4B286D);
+  border-color: var(--brand, #4b286d);
   background: rgb(75 40 109 / 10%);
 }
-#logic-canvas .logic-terminal[hidden] { display: none; }
+#logic-canvas .logic-terminal[hidden] {
+  display: none;
+}
+.adder-input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.adder-input-grid fieldset {
+  min-width: 0;
+  border: 1px solid #d8cce2;
+  border-radius: 12px;
+  padding: 1rem;
+}
+.adder-bits {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+.adder-bits button {
+  min-width: 44px;
+  padding: 8px;
+  font-family: monospace;
+  font-size: 1.2rem;
+}
+.adder-bits button[hidden],
+#adder-four[hidden],
+#adder-half[hidden] {
+  display: none;
+}
+.adder-bits button[aria-pressed="true"] {
+  background: #4b286d;
+  color: white;
+}
+.adder-result {
+  display: grid;
+  gap: 10px;
+  padding: 1.5rem;
+  background: #f2ecf7;
+  text-align: center;
+}
+.adder-result strong {
+  font: 600 clamp(1rem, 3vw, 1.8rem) monospace;
+}
+.adder-stages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 1rem 0;
+}
+.adder-stage {
+  border: 1px dashed #b3a6bf;
+  border-radius: 12px;
+  padding: 12px;
+  background: #faf8fc;
+}
+.adder-stage.complete {
+  border: 2px solid #8060a8;
+  background: #f2ecf7;
+}
+.adder-stage h3 {
+  margin: 0;
+}
+.adder-stage p {
+  margin: 10px 0;
+}
+.adder-block {
+  border: 1px solid #8060a8;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background: white;
+}
+#adder-half-diagram {
+  max-width: 700px;
+  margin: auto;
+}
+#adder-half-diagram svg {
+  width: 100%;
+}
+#adder-table table {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 1rem;
+  border-collapse: collapse;
+  text-align: center;
+}
+#adder-table td,
+#adder-table th {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+#adder-table .current {
+  background: #f2ecf7;
+  font-weight: 700;
+}
+@media (max-width: 650px) {
+  .adder-input-grid {
+    grid-template-columns: 1fr;
+  }
+  .adder-stages {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .adder-stage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .adder-stage p {
+    margin: 0;
+  }
+}

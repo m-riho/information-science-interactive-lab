@@ -54,6 +54,6 @@ export const demos = [
     description: "コンピュータはどう足し算する？ 繰り上がりを追いかけよう。",
     tag: "二進数の計算",
     icon: "+",
-    ready: false,
+    ready: true,
   },
 ] as const;
