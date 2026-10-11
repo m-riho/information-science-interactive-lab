@@ -22,7 +22,7 @@ export const demos = [
     description: "同じ1枚でも、上と下で撮影する時刻が違ったら？",
     tag: "カメラの仕組み",
     icon: "≋",
-    ready: false,
+    ready: true,
   },
   {
     slug: "memory-hierarchy",

@@ -611,3 +611,24 @@ footer {
     width: 100%;
   }
 }
+
+#rs-canvas {
+  width: 100%;
+  line-height: 0;
+}
+.rolling-lab .sliders {
+  grid-template-columns: repeat(2, 1fr);
+}
+.rolling-lab .slider > span {
+  flex-wrap: wrap;
+}
+.rolling-lab input:disabled,
+.rolling-lab select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+@media (max-width: 540px) {
+  .rolling-lab .sliders {
+    grid-template-columns: 1fr;
+  }
+}
