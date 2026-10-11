@@ -30,7 +30,7 @@ export const demos = [
     description: "よく使うデータを近くに置く。それだけで速くなる理由。",
     tag: "記憶装置",
     icon: "▤",
-    ready: false,
+    ready: true,
   },
   {
     slug: "moores-law",
