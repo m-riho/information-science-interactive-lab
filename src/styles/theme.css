@@ -994,3 +994,286 @@ footer {
     margin: 0;
   }
 }
+.session04-card {
+  margin-top: 24px;
+}
+.session04-padding {
+  padding: clamp(16px, 4vw, 32px);
+}
+.session04-placeholder {
+  padding: 24px 0;
+}
+.session04-placeholder h2 {
+  margin-top: 16px;
+}
+.session04-status {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--brand-light);
+  border-left: 4px solid var(--brand);
+}
+.session04-status p {
+  margin-bottom: 0;
+}
+.session04-keywords {
+  font-size: 0.875rem;
+  color: var(--brand-dark);
+}
+.demo-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+.demo-navigation a {
+  min-height: 44px;
+  padding: 10px 0;
+}
+@media (max-width: 650px) {
+  .demo-navigation {
+    flex-direction: column;
+  }
+}
+.storage-inputs {
+  margin: 20px 0;
+}
+.storage-inputs button[aria-pressed="true"] {
+  background: var(--brand);
+  color: white;
+}
+.storage-result,
+.storage-block {
+  background: var(--brand-light);
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.storage-diagram {
+  max-width: 700px;
+  margin: auto;
+}
+.storage-diagram svg,
+.storage-compare svg {
+  width: 100%;
+  display: block;
+}
+.storage-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+.storage-table th,
+.storage-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.storage-table .current {
+  background: var(--brand-light);
+  font-weight: 700;
+}
+.storage-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 24px 0;
+}
+.storage-compare section {
+  min-width: 0;
+}
+.storage-history {
+  overflow-x: auto;
+}
+@media (max-width: 700px) {
+  .storage-compare {
+    grid-template-columns: 1fr;
+  }
+}
+.cpu-phases {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+}
+.cpu-phases span {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.cpu-phases .current {
+  background: var(--brand-light);
+  border: 3px solid var(--brand);
+  font-weight: 700;
+}
+.cpu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.cpu-grid section {
+  min-width: 0;
+}
+.cpu-registers {
+  padding: 16px;
+  background: var(--brand-light);
+  border-radius: 12px;
+}
+.cpu-registers dt {
+  font-size: 0.9rem;
+}
+.cpu-registers dd {
+  margin: 0 0 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+@media (max-width: 700px) {
+  .cpu-grid {
+    grid-template-columns: 1fr;
+  }
+  .cpu-phases {
+    gap: 6px;
+  }
+  .cpu-phases span {
+    padding: 8px 2px;
+    font-size: 0.85rem;
+  }
+}
+.translation-flow {
+  padding-left: 24px;
+}
+.translation-flow > li {
+  padding: 16px;
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.translation-flow pre {
+  padding: 16px;
+  background: var(--brand-light);
+  white-space: pre-wrap;
+}
+#lang-a,
+#lang-b {
+  width: 80px;
+  min-height: 44px;
+  font: inherit;
+}
+#trans-b[hidden] {
+  display: none;
+}
+.abstract-gate {
+  text-align: center;
+  border: 3px solid var(--brand);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px auto;
+  background: var(--brand-light);
+}
+#trans-figure svg text {
+  stroke: none;
+  font-size: 16px;
+}
+#trans-mode,
+#lang-format {
+  min-height: 44px;
+  max-width: 100%;
+  font: inherit;
+}
+.tm-scroll {
+  overflow-x: auto;
+  margin: 24px 0;
+}
+.tm-tape {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(58px, 1fr));
+  gap: 6px;
+  padding: 6px;
+}
+.tm-cell {
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 2px;
+  background: var(--surface);
+}
+.tm-cell small,
+.tm-cell strong,
+.tm-cell span {
+  display: block;
+}
+.tm-cell strong {
+  font-size: 1.8rem;
+}
+.tm-cell span {
+  font-size: 0.7rem;
+}
+.tm-head {
+  border: 3px solid var(--brand);
+  background: var(--brand-light);
+}
+
+/* nMOS断面：電流記号だけを動かし、停止時は位置を保持する。 */
+.mos-structure {
+  width: 100%;
+  max-width: 720px;
+  display: block;
+  margin: auto;
+  font-size: 16px;
+  fill: var(--text, #32184c);
+}
+.mos-body {
+  fill: #f2e6ef;
+  stroke: #8060a8;
+}
+.mos-n {
+  fill: #dceaf4;
+  stroke: #586b91;
+}
+.mos-gate {
+  fill: #bcb0cc;
+  stroke: #4b286d;
+}
+.mos-insulator {
+  fill: #fff7d6;
+  stroke: #8b7740;
+}
+.mos-wire {
+  fill: none;
+  stroke: #4b286d;
+  stroke-width: 3;
+}
+.mos-channel {
+  stroke: #8060a8;
+  stroke-width: 15;
+}
+.mos-charge {
+  fill: #fff;
+  stroke: #4b286d;
+  stroke-width: 2;
+  animation: mos-current 2s linear infinite;
+  animation-play-state: paused;
+}
+.is-flowing .mos-charge {
+  animation-play-state: running;
+}
+@keyframes mos-current {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-280px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .is-flowing .mos-charge {
+    animation-play-state: paused;
+  }
+}
+
+.mos-scroll { overflow-x: auto; }
+.mos-structure { min-width: 520px; }

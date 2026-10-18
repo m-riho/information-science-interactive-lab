@@ -8,6 +8,15 @@ import { mountMemory } from "./demos/memory-hierarchy/view";
 import { mountMoore } from "./demos/moores-law/view";
 import { mountLogic } from "./demos/logic-gates/view";
 import { mountAdder } from "./demos/binary-adder/view";
+import { session04Demos, session04Summary } from "./sessions/session04";
+import { renderSession04 } from "./sessions/session04View";
+import { mountSession04Placeholder } from "./components/demoLayout";
+import { mountSR } from "./demos/sr-latch/view";
+import { mountClock } from "./demos/d-latch-flipflop/view";
+import { mountCPU } from "./demos/cpu-cycle/view";
+import { mountLanguage } from "./demos/language-to-cpu/view";
+import { mountTransistor } from "./demos/transistor-logic/view";
+import { mountTuring } from "./demos/turing-machine/view";
 const publishedCount = demos.filter((demo) => demo.ready).length;
 const root = document.querySelector<HTMLElement>("#content");
 if (!root) throw new Error("本文の要素がありません");
@@ -21,7 +30,31 @@ function render(): void {
   const route = parseRoute(location.hash);
   if (route.kind === "home") {
     document.title = "情報科学A | 立教大学";
-    root.innerHTML = `<section class="hero"><p class="eyebrow">RIKKYO UNIVERSITY / INFORMATION SCIENCE A</p><h1>見て、動かして、<br><em>しくみ</em>をつかもう。</h1><p class="lead">コンピュータの「なぜ？」を、小さな実験から。<br>予想して、試して、自分の言葉で説明してみよう。</p><span class="hero-symbol" aria-hidden="true">01<br>10</span></section><div class="section-heading"><h2>授業から探す</h2><span>SESSIONS</span></div><a class="session-card" href="#/sessions/03"><span class="session-number">03</span><div><p class="eyebrow">第3回 / 7つの実験</p><h2>コンピュータの仕組み</h2><p>映像の見え方から、記憶と計算のしくみまで。</p><span class="badge">${publishedCount}件公開中${demos.length > publishedCount ? ` · ${demos.length - publishedCount}件準備中` : ""}</span></div><span class="arrow" aria-hidden="true">→</span></a><p class="note">事前知識は不要です。気になるデモから始めてください。</p>`;
+    root.innerHTML = `<section class="hero"><p class="eyebrow">RIKKYO UNIVERSITY / INFORMATION SCIENCE A</p><h1>見て、動かして、<br><em>しくみ</em>をつかもう。</h1><p class="lead">コンピュータの「なぜ？」を、小さな実験から。<br>予想して、試して、自分の言葉で説明してみよう。</p><span class="hero-symbol" aria-hidden="true">01<br>10</span></section><div class="section-heading"><h2>授業から探す</h2><span>SESSIONS</span></div><a class="session-card" href="#/sessions/03"><span class="session-number">03</span><div><p class="eyebrow">第3回 / 7つの実験</p><h2>コンピュータの仕組み</h2><p>映像の見え方から、記憶と計算のしくみまで。</p><span class="badge">${publishedCount}件公開中${demos.length > publishedCount ? ` · ${demos.length - publishedCount}件準備中` : ""}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card session04-card" href="#/sessions/04"><span class="session-number">04</span><div><p class="eyebrow">Information Science A / Session 04</p><h2>記憶回路からCPU・機械語へ</h2><p>0と1の記憶から、命令を実行するしくみへ。</p><span class="badge">${session04Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><p class="note">事前知識は不要です。気になるデモから始めてください。</p>`;
+  } else if (route.kind === "session04") {
+    document.title = "第4回 記憶回路からCPU・機械語へ | 情報科学A";
+    root.innerHTML = renderSession04();
+  } else if (route.kind === "demo04") {
+    const demo = session04Demos.find((d) => d.slug === route.slug);
+    if (demo) {
+      document.title = `${demo.title}${demo.ready ? "" : "（準備中）"} | 情報科学A 第4回`;
+      cleanup =
+        demo.slug === "sr-latch"
+          ? mountSR(root)
+          : demo.slug === "d-latch-flipflop"
+            ? mountClock(root)
+            : demo.slug === "cpu-cycle"
+              ? mountCPU(root)
+              : demo.slug === "pc-branch"
+                ? mountCPU(root, true)
+                : demo.slug === "language-to-cpu"
+                  ? mountLanguage(root)
+                  : demo.slug === "transistor-logic"
+                    ? mountTransistor(root)
+                    : demo.slug === "turing-machine"
+                      ? mountTuring(root)
+                      : mountSession04Placeholder(root, demo);
+    } else missing();
   } else if (route.kind === "session") {
     document.title = "第3回 コンピュータの仕組み | 情報科学A";
     root.innerHTML = `<a class="back" href="#/">← 授業一覧</a><div class="page-heading"><p class="eyebrow">SESSION 03</p><h1>コンピュータの仕組み</h1><p class="lead">見える世界と、コンピュータが読み取る世界。<br>7つの実験で、その間をのぞいてみよう。</p></div><div class="section-heading"><h2>インタラクティブ・デモ</h2><span>${String(publishedCount).padStart(2, "0")} / ${String(demos.length).padStart(2, "0")} 公開中</span></div><div class="card-grid">${demos.map(card).join("")}</div>`;
