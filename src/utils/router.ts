@@ -4,12 +4,17 @@ export type Route =
   | { kind: "demo"; slug: string }
   | { kind: "session04" }
   | { kind: "demo04"; slug: string }
+  | { kind: "session05" }
+  | { kind: "demo05"; slug: string }
   | { kind: "missing" };
 export function parseRoute(hash: string): Route {
   const path = hash.replace(/^#/, "") || "/";
   if (path === "/") return { kind: "home" };
   if (path === "/sessions/03") return { kind: "session" };
   if (path === "/sessions/04") return { kind: "session04" };
+  if (path === "/sessions/05") return { kind: "session05" };
+  const fifth = /^\/sessions\/05\/([a-z0-9-]+)$/.exec(path);
+  if (fifth?.[1]) return { kind: "demo05", slug: fifth[1] };
   const fourth = /^\/sessions\/04\/([a-z0-9-]+)$/.exec(path);
   if (fourth?.[1]) return { kind: "demo04", slug: fourth[1] };
   const match = /^\/sessions\/03\/([a-z-]+)$/.exec(path);

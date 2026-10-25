@@ -1275,5 +1275,201 @@ footer {
   }
 }
 
-.mos-scroll { overflow-x: auto; }
-.mos-structure { min-width: 520px; }
+.mos-scroll {
+  overflow-x: auto;
+}
+.mos-structure {
+  min-width: 520px;
+}
+
+/* 第5回：状態変化と処理のつながりを文字でも示す。 */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+.lesson-panel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+  min-width: 0;
+}
+.lesson-panel h2 {
+  font-size: 1.2rem;
+}
+.lesson-panel pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: var(--brand-light);
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.lesson-value,
+.family-line {
+  overflow-wrap: anywhere;
+  font-weight: 600;
+  line-height: 1.8;
+}
+.lesson-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+.lesson-field select {
+  min-height: 44px;
+  max-width: 100%;
+  font: inherit;
+}
+.lesson-trace {
+  padding-left: 28px;
+}
+.lesson-trace li {
+  padding: 8px;
+  margin: 4px 0;
+  overflow-wrap: anywhere;
+}
+.lesson-trace [aria-current="step"] {
+  background: var(--brand-light);
+  border-left: 4px solid var(--brand);
+  font-weight: 700;
+}
+.pipeline-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 8px 0;
+}
+.pipeline-block label {
+  min-height: 44px;
+}
+.family-edges {
+  list-style: none;
+  padding: 0;
+}
+.family-edges li {
+  padding: 12px;
+  margin: 8px 0;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+}
+.family-edges .active {
+  border-color: var(--brand);
+  background: var(--brand-light);
+}
+.family-edges strong {
+  display: block;
+}
+@media (max-width: 700px) {
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+  .lesson-panel {
+    padding: 14px;
+  }
+}
+.web-flow {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.web-flow li {
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+}
+.web-flow strong {
+  display: block;
+  margin-top: 8px;
+}
+.web-flow [aria-current="step"] {
+  background: var(--brand-light);
+  border-color: var(--brand);
+}
+#web-query {
+  font: inherit;
+  min-height: 44px;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px;
+}
+#web-screen-message {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+  .web-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.halting-equation {
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  font-weight: 700;
+  line-height: 2;
+  overflow-wrap: anywhere;
+  padding: 16px;
+  background: var(--brand-light);
+  border-radius: 10px;
+}
+#halting-content .goal {
+  overflow-wrap: anywhere;
+}
+.halting-demo [hidden] {
+  display: none !important;
+}
+.city-map {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--brand-light);
+}
+.city-map svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.city-route {
+  fill: none;
+  stroke: var(--brand);
+  stroke-width: 1;
+}
+.city-map button,
+.city-dot {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  border: 2px solid var(--brand);
+  border-radius: 50%;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: white;
+  color: var(--brand-dark);
+  font-weight: bold;
+}
+.city-map button[aria-pressed="true"] {
+  background: var(--brand);
+  color: white;
+}
+.city-route-label,
+#tsp-count-result {
+  overflow-wrap: anywhere;
+}
+#np-definitions[hidden] {
+  display: none;
+}

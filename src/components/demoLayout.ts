@@ -4,15 +4,46 @@ import {
   type Session04Demo,
 } from "../sessions/session04";
 import { mountDemoControls, type DemoActions } from "./demoControls";
+export interface DemoMetadata {
+  slug: string;
+  title: string;
+  description: string;
+  goal: string;
+  keywords: string;
+  phase: number;
+  ready: boolean;
+}
+export interface DemoSession {
+  number: string;
+  path: string;
+  demos: readonly DemoMetadata[];
+  note: string;
+}
+const defaultSession: DemoSession = {
+  number: "04",
+  path: session04Path,
+  demos: session04Demos,
+  note: "このデモは概念理解のため単純化しています。実際の回路やCPUの厳密な動作・時間を再現するものではありません。",
+};
+export function demoNavigation(
+  demo: DemoMetadata,
+  session: DemoSession = defaultSession,
+) {
+  const index = session.demos.findIndex((item) => item.slug === demo.slug);
+  return {
+    index,
+    previous: session.demos[index - 1],
+    next: session.demos[index + 1],
+  };
+}
 export function mountDemoLayout(
   root: HTMLElement,
-  demo: Session04Demo,
+  demo: DemoMetadata,
   actions: DemoActions = {},
+  session: DemoSession = defaultSession,
 ) {
-  const index = session04Demos.findIndex((item) => item.slug === demo.slug);
-  const previous = session04Demos[index - 1],
-    next = session04Demos[index + 1];
-  root.innerHTML = `<a class="back" href="${session04Path}">← Session 04トップへ</a><div class="page-heading"><p class="eyebrow">Information Science A / Session 04 / Demo ${index + 1}</p><h1>${demo.title}</h1><p class="lead">${demo.description}</p></div><p class="goal"><strong>学習目標</strong>　${demo.goal}</p><section class="lab session04-lab" aria-label="${demo.title}"><div class="lab-bar"><span>操作して、しくみを確かめよう</span></div><div class="session04-padding"><h2>操作方法</h2><p data-slot="instructions"></p><div data-slot="controls"></div><div data-slot="body"></div><section class="session04-status"><h2>いま何が起きた？</h2><p data-slot="status" role="status" aria-live="polite"></p></section></div></section><p class="hint">このデモは概念理解のため単純化しています。実際の回路やCPUの厳密な動作・時間を再現するものではありません。</p><nav class="demo-navigation" aria-label="第4回のデモを移動">${previous ? `<a href="${session04Path}/${previous.slug}">← 前：${previous.title}</a>` : "<span></span>"}<a href="${session04Path}">Session 04トップへ</a>${next ? `<a href="${session04Path}/${next.slug}">次：${next.title} →</a>` : "<span></span>"}</nav>`;
+  const { index, previous, next } = demoNavigation(demo, session);
+  root.innerHTML = `<a class="back" href="${session.path}">← Session ${session.number}トップへ</a><div class="page-heading"><p class="eyebrow">Information Science A / Session ${session.number} / Demo ${index + 1}</p><h1>${demo.title}</h1><p class="lead">${demo.description}</p></div><p class="goal"><strong>学習目標</strong>　${demo.goal}</p><section class="lab session04-lab" aria-label="${demo.title}"><div class="lab-bar"><span>操作して、しくみを確かめよう</span></div><div class="session04-padding"><h2>操作方法</h2><p data-slot="instructions"></p><div data-slot="controls"></div><div data-slot="body"></div><section class="session04-status"><h2>いま何が起きた？</h2><p data-slot="status" role="status" aria-live="polite"></p></section></div></section><p class="hint">${session.note}</p><nav class="demo-navigation" aria-label="第${Number(session.number)}回のデモを移動">${previous ? `<a href="${session.path}/${previous.slug}">← 前：${previous.title}</a>` : "<span></span>"}<a href="${session.path}">Session ${session.number}トップへ</a>${next ? `<a href="${session.path}/${next.slug}">次：${next.title} →</a>` : "<span></span>"}</nav>`;
   const slot = (name: string) =>
     root.querySelector<HTMLElement>(`[data-slot="${name}"]`)!;
   const controls = mountDemoControls(slot("controls"), actions);
