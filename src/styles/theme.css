@@ -1473,3 +1473,182 @@ footer {
 #np-definitions[hidden] {
   display: none;
 }
+.per-figure {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  font:
+    14px system-ui,
+    sans-serif;
+}
+.per-slider {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  margin: 8px 0;
+}
+.per-slider input {
+  grid-column: 1 / -1;
+  min-height: 44px;
+  width: 100%;
+  accent-color: var(--brand);
+}
+.per-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  text-align: center;
+}
+.per-table caption {
+  text-align: left;
+  font-weight: bold;
+  color: var(--brand-dark);
+}
+.per-table td,
+.per-table th {
+  padding: 6px 2px;
+  border-bottom: 1px solid var(--border);
+}
+.per-selected {
+  background: var(--brand-light);
+}
+.s6-maze {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 400px;
+  border: 2px solid var(--brand);
+}
+.s6-maze span {
+  display: grid;
+  align-content: center;
+  text-align: center;
+  min-height: 58px;
+  border: 1px solid var(--border);
+  font-weight: 700;
+}
+.s6-maze small {
+  font-size: 0.75rem;
+  min-height: 1em;
+}
+.s6-wall {
+  background: var(--brand-dark);
+  color: white;
+}
+.s6-current {
+  background: var(--brand-light);
+  outline: 3px solid var(--brand);
+  outline-offset: -3px;
+}
+.s6-graph {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: auto;
+  font:
+    14px system-ui,
+    sans-serif;
+}
+[data-moves] button[hidden] {
+  display: none;
+}
+.s6-bank {
+  background: var(--brand-light);
+}
+.s6-bank strong {
+  font-size: 1.35em;
+}
+
+/* A parent sits above its children; siblings share a horizontal connector. */
+.s6-search-tree,
+.s6-search-tree ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.s6-search-tree li {
+  position: relative;
+  text-align: center;
+  padding: 0 0.2rem;
+}
+.s6-search-tree ul {
+  position: relative;
+  padding-top: 12px;
+}
+.s6-search-tree ul > li {
+  padding-top: 12px;
+}
+.s6-search-tree ul::before,
+.s6-search-tree ul > li::before,
+.s6-search-tree ul > li::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-color: var(--brand);
+  border-style: solid;
+  border-width: 0;
+}
+.s6-search-tree ul::before {
+  height: 12px;
+  left: 50%;
+  border-left-width: 1px;
+}
+.s6-search-tree ul > li::before {
+  left: 50%;
+  height: 12px;
+  border-left-width: 1px;
+}
+.s6-search-tree ul > li::after {
+  left: 0;
+  right: 0;
+  border-top-width: 1px;
+}
+.s6-search-tree ul > li:first-child::after {
+  left: 50%;
+}
+.s6-search-tree ul > li:last-child::after {
+  right: 50%;
+}
+.s6-search-tree li.on-route > ul::before,
+.s6-search-tree ul > li.on-route::before {
+  border-left-width: 3px;
+}
+.s6-search-tree ul > li.on-route::after {
+  border-top-width: 3px;
+}
+.s6-tree-node {
+  display: inline-grid;
+  width: 5.8em;
+  line-height: 1.35;
+  padding: 0.3em 0;
+  border: 1px solid var(--brand);
+  border-radius: 0.5rem;
+  background: var(--brand-light);
+}
+.s6-tree-node.waiting {
+  background: white;
+  border-style: dashed;
+}
+.s6-tree-node.current {
+  outline: 2px solid var(--brand);
+}
+
+.eliza-demo dd {
+  margin: 0.2rem 0 1rem;
+  overflow-wrap: anywhere;
+}
+.eliza-demo dt {
+  font-weight: bold;
+}
+.eliza-demo input {
+  width: min(100%, 32em);
+  min-width: 0;
+  min-height: 44px;
+  font: inherit;
+}
+
+/* Direct-manipulation lessons have no timeline: only reset is relevant. */
+.s6-direct-controls [data-action]:not([data-action="reset"]),
+.s6-direct-controls .check { display: none; }

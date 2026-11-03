@@ -6,11 +6,13 @@ export function mountStepLesson(
   root: HTMLElement,
   demo: DemoMetadata,
   resetData: () => void,
+  session = session05Config,
 ) {
   let index = 0,
     length = 1,
     renderFrame: (index: number) => void = () => {},
     timer: ReturnType<typeof setInterval> | undefined;
+  let intervalMs = STEP_INTERVAL_MS;
   const clear = () => {
     if (timer !== undefined) clearInterval(timer);
     timer = undefined;
@@ -34,7 +36,7 @@ export function mountStepLesson(
       step: advance,
       start: () => {
         clear();
-        timer = setInterval(advance, STEP_INTERVAL_MS);
+        timer = setInterval(advance, intervalMs);
       },
       stop: clear,
       reset: () => {
@@ -42,10 +44,19 @@ export function mountStepLesson(
         resetData();
       },
     },
-    session05Config,
+    session,
   );
   return {
     ...layout,
+    setIntervalMs(ms: number) {
+      if (!Number.isFinite(ms) || ms < 100)
+        throw new RangeError("再生間隔は100ms以上です");
+      intervalMs = ms;
+      if (timer !== undefined) {
+        clear();
+        timer = setInterval(advance, intervalMs);
+      }
+    },
     setFrames(count: number, render: (index: number) => void) {
       if (!Number.isInteger(count) || count < 1)
         throw new RangeError("手順は1件以上必要です");

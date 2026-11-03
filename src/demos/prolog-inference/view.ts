@@ -1,19 +1,29 @@
 import { mountStepLesson } from "../../components/stepLesson";
-import { session05Demos } from "../../sessions/session05";
+import type { DemoMetadata } from "../../components/demoLayout";
+import { session05Config, session05Demos } from "../../sessions/session05";
 import {
   familyFacts,
   inferGrandparent,
   personNames,
   queryPresets,
 } from "./model";
-export function mountProlog(root: HTMLElement): () => void {
+export function mountProlog(
+  root: HTMLElement,
+  demo: DemoMetadata = session05Demos[2],
+  session = session05Config,
+): () => void {
   let preset = 0;
   const abort = new AbortController();
-  const layout = mountStepLesson(root, session05Demos[2], () => {
-    preset = 0;
-    select.value = "0";
-    restart();
-  });
+  const layout = mountStepLesson(
+    root,
+    demo,
+    () => {
+      preset = 0;
+      select.value = "0";
+      restart();
+    },
+    session,
+  );
   layout.instructions.textContent =
     "問い合わせを選び、1ステップずつ事実と規則を照合します。XとZを決め、条件を満たす同じYを探します。強調した矢印が、いま照合した親子関係です。";
   layout.body.innerHTML = `<label class="lesson-field">問い合わせ<select id="prolog-query">${queryPresets.map((q, i) => `<option value="${i}">${q.label}</option>`).join("")}</select></label><div class="lesson-grid"><section class="lesson-panel"><h2>登録された事実</h2><pre>parent(taro, hanako).

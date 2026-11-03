@@ -46,7 +46,10 @@ export function mountDemoLayout(
   root.innerHTML = `<a class="back" href="${session.path}">← Session ${session.number}トップへ</a><div class="page-heading"><p class="eyebrow">Information Science A / Session ${session.number} / Demo ${index + 1}</p><h1>${demo.title}</h1><p class="lead">${demo.description}</p></div><p class="goal"><strong>学習目標</strong>　${demo.goal}</p><section class="lab session04-lab" aria-label="${demo.title}"><div class="lab-bar"><span>操作して、しくみを確かめよう</span></div><div class="session04-padding"><h2>操作方法</h2><p data-slot="instructions"></p><div data-slot="controls"></div><div data-slot="body"></div><section class="session04-status"><h2>いま何が起きた？</h2><p data-slot="status" role="status" aria-live="polite"></p></section></div></section><p class="hint">${session.note}</p><nav class="demo-navigation" aria-label="第${Number(session.number)}回のデモを移動">${previous ? `<a href="${session.path}/${previous.slug}">← 前：${previous.title}</a>` : "<span></span>"}<a href="${session.path}">Session ${session.number}トップへ</a>${next ? `<a href="${session.path}/${next.slug}">次：${next.title} →</a>` : "<span></span>"}</nav>`;
   const slot = (name: string) =>
     root.querySelector<HTMLElement>(`[data-slot="${name}"]`)!;
-  const controls = mountDemoControls(slot("controls"), actions);
+  const controlHost = slot("controls");
+  if (demo.ready && !actions.start && !actions.step && session.number === "06")
+    controlHost.classList.add("s6-direct-controls");
+  const controls = mountDemoControls(controlHost, actions);
   return {
     body: slot("body"),
     instructions: slot("instructions"),

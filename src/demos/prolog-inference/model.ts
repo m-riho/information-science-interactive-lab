@@ -1,3 +1,4 @@
+import { childrenOf } from "./facts";
 export type Person = "taro" | "hanako" | "jiro";
 export const personNames: Record<Person, string> = {
   taro: "太郎",
@@ -38,10 +39,7 @@ export function inferGrandparent(
       result: null,
     },
   ];
-  for (let i = 0; i < facts.length; i++) {
-    const first = facts[i]!;
-    if (first.parent !== x) continue;
-    const y = first.child;
+  for (const { edge: i, child: y } of childrenOf(facts, x)) {
     frames.push({
       message: `parent(${x}, ${y}) が見つかりました。Y=${y} を候補にします。`,
       y,
