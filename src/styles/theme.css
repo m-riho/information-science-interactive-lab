@@ -1651,4 +1651,125 @@ footer {
 
 /* Direct-manipulation lessons have no timeline: only reset is relevant. */
 .s6-direct-controls [data-action]:not([data-action="reset"]),
-.s6-direct-controls .check { display: none; }
+.s6-direct-controls .check {
+  display: none;
+}
+
+.session07-body code {
+  overflow-wrap: anywhere;
+}
+.card h3 {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.ml-plot {
+  display: block;
+  width: 100%;
+  max-width: 540px;
+  margin: auto;
+  font:
+    12px system-ui,
+    sans-serif;
+}
+.ml-center {
+  animation: ml-center-move 400ms ease-out;
+}
+@keyframes ml-center-move {
+  from {
+    transform: var(--ml-from);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ml-center {
+    animation: none;
+  }
+}
+[data-manual][hidden] {
+  display: none;
+}
+
+.q-maze {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  max-width: 400px;
+  border: 2px solid var(--brand);
+}
+.q-maze > div {
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+}
+.q-maze small {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+.q-maze strong {
+  font-size: 1.2rem;
+}
+.q-wall {
+  background: var(--brand-dark);
+  color: white;
+}
+.q-route {
+  background: var(--brand-light);
+  border: 2px dashed var(--brand) !important;
+}
+.q-current {
+  outline: 3px solid var(--brand);
+  outline-offset: -3px;
+}
+
+.notebook-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+}
+.notebook-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  min-height: 44px;
+  border: 1px solid var(--brand);
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.xor-network-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 4px;
+}
+.xor-network-diagram {
+  position: relative;
+  width: 900px;
+  height: 640px;
+}
+.xor-network-diagram > svg {
+  position: absolute;
+  inset: 0;
+}
+.xor-node {
+  position: absolute;
+  width: 210px;
+  border: 2px solid var(--brand);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.xor-node h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: var(--brand-dark);
+}
+.xor-node p {
+  margin: 4px 0;
+}
+.xor-input {
+  width: 190px;
+  background: var(--brand-light);
+}

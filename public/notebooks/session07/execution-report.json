@@ -1,0 +1,33 @@
+{
+  "python": "3.13.5",
+  "measured_backends": [
+    "cpu",
+    "mps"
+  ],
+  "notebooks": [
+    {
+      "file": "01_digits_kmeans.ipynb",
+      "executed_code_cells": 4,
+      "errors": 0,
+      "figures": 4
+    },
+    {
+      "file": "02_digits_mlp.ipynb",
+      "executed_code_cells": 5,
+      "errors": 0,
+      "figures": 4
+    },
+    {
+      "file": "03_pytorch_gpu.ipynb",
+      "executed_code_cells": 4,
+      "errors": 0,
+      "figures": 1
+    },
+    {
+      "file": "04_image_classification.ipynb",
+      "executed_code_cells": 4,
+      "errors": 0,
+      "figures": 3
+    }
+  ]
+}

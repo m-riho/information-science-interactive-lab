@@ -1,3 +1,23 @@
+import { mountActivation } from "./demos/activation-functions/view";
+import { mountConfusion } from "./demos/confusion-matrix/view";
+import { mountXor } from "./demos/xor-network/view";
+import { mountQMaze } from "./demos/q-maze/view";
+import { mountMCTS } from "./demos/mcts-search/view";
+import { mountShortcut } from "./demos/shortcut-learning/view";
+import { mountWeighted, mountLearning } from "./demos/perceptron-learning/view";
+import { mountKmeans } from "./demos/kmeans/view";
+import { mountOverfit } from "./demos/overfitting/view";
+import {
+  session07Materials,
+  session07Path,
+  session07Title,
+  session07Summary,
+} from "./sessions/session07";
+import {
+  renderSession07,
+  mountNotebook07,
+  mountMaterial07,
+} from "./sessions/session07View";
 import { mountEliza } from "./demos/eliza/view";
 import { mountRules } from "./demos/rule-inference/view";
 import {
@@ -53,7 +73,34 @@ function render(): void {
   const route = parseRoute(location.hash);
   if (route.kind === "home") {
     document.title = "情報科学A | 立教大学";
-    root.innerHTML = `<section class="hero"><p class="eyebrow">RIKKYO UNIVERSITY / INFORMATION SCIENCE A</p><h1>見て、動かして、<br><em>しくみ</em>をつかもう。</h1><p class="lead">コンピュータの「なぜ？」を、小さな実験から。<br>予想して、試して、自分の言葉で説明してみよう。</p><span class="hero-symbol" aria-hidden="true">01<br>10</span></section><div class="section-heading"><h2>授業から探す</h2><span>SESSIONS</span></div><a class="session-card" href="#/sessions/03"><span class="session-number">03</span><div><p class="eyebrow">第3回 / 7つの実験</p><h2>コンピュータの仕組み</h2><p>映像の見え方から、記憶と計算のしくみまで。</p><span class="badge">${publishedCount}件公開中${demos.length > publishedCount ? ` · ${demos.length - publishedCount}件準備中` : ""}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card session04-card" href="#/sessions/04"><span class="session-number">04</span><div><p class="eyebrow">Information Science A / Session 04</p><h2>記憶回路からCPU・機械語へ</h2><p>0と1の記憶から、命令を実行するしくみへ。</p><span class="badge">${session04Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="#/sessions/05"><span class="session-number">05</span><div><p class="eyebrow">Information Science A / Session 05</p><h2>プログラミング言語と計算の限界</h2><p>計算の表し方から、計算できること・難しいことへ。</p><span class="badge">${session05Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="#/sessions/06"><span class="session-number">06</span><div><p class="eyebrow">Information Science A / Session 06</p><h2>${session06Title}</h2><p>ニューラルネットワークから、探索・推論・対話へ。</p><span class="badge">${session06Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><p class="note">事前知識は不要です。気になるデモから始めてください。</p>`;
+    root.innerHTML = `<section class="hero"><p class="eyebrow">RIKKYO UNIVERSITY / INFORMATION SCIENCE A</p><h1>見て、動かして、<br><em>しくみ</em>をつかもう。</h1><p class="lead">コンピュータの「なぜ？」を、小さな実験から。<br>予想して、試して、自分の言葉で説明してみよう。</p><span class="hero-symbol" aria-hidden="true">01<br>10</span></section><div class="section-heading"><h2>授業から探す</h2><span>SESSIONS</span></div><a class="session-card" href="#/sessions/03"><span class="session-number">03</span><div><p class="eyebrow">第3回 / 7つの実験</p><h2>コンピュータの仕組み</h2><p>映像の見え方から、記憶と計算のしくみまで。</p><span class="badge">${publishedCount}件公開中${demos.length > publishedCount ? ` · ${demos.length - publishedCount}件準備中` : ""}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card session04-card" href="#/sessions/04"><span class="session-number">04</span><div><p class="eyebrow">Information Science A / Session 04</p><h2>記憶回路からCPU・機械語へ</h2><p>0と1の記憶から、命令を実行するしくみへ。</p><span class="badge">${session04Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="#/sessions/05"><span class="session-number">05</span><div><p class="eyebrow">Information Science A / Session 05</p><h2>プログラミング言語と計算の限界</h2><p>計算の表し方から、計算できること・難しいことへ。</p><span class="badge">${session05Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="#/sessions/06"><span class="session-number">06</span><div><p class="eyebrow">Information Science A / Session 06</p><h2>${session06Title}</h2><p>ニューラルネットワークから、探索・推論・対話へ。</p><span class="badge">${session06Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="${session07Path}"><span class="session-number">07</span><div><p class="eyebrow">Information Science A / Session 07</p><h2>${session07Title}</h2><p>データからの学習と、未知のデータへの予測を体験しよう。</p><span class="badge">${session07Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><p class="note">事前知識は不要です。気になるデモから始めてください。</p>`;
+  } else if (route.kind === "session07") {
+    document.title = session07Title + " | 情報科学A 第7回";
+    root.innerHTML = renderSession07();
+  } else if (route.kind === "material07") {
+    const material = session07Materials.find((m) => m.slug === route.slug);
+    if (material) {
+      document.title =
+        material.title +
+        (material.ready ? "" : "（準備中）") +
+        " | 情報科学A 第7回";
+      const mounts = {
+        "activation-functions": mountActivation,
+        "confusion-matrix": mountConfusion,
+        "xor-neural-network": mountXor,
+        "reinforcement-learning": mountQMaze,
+        "alphago-search": mountMCTS,
+        "shortcut-learning": mountShortcut,
+        "weighted-sum": mountWeighted,
+        "perceptron-learning": mountLearning,
+        kmeans: mountKmeans,
+        overfitting: mountOverfit,
+      };
+      if (!material.ready) cleanup = mountMaterial07(root, material);
+      else if (material.kind === "notebook")
+        cleanup = mountNotebook07(root, material);
+      else cleanup = mounts[material.slug](root);
+    } else missing();
   } else if (route.kind === "session06") {
     document.title = session06Title + " | 情報科学A 第6回";
     root.innerHTML = renderSession06();

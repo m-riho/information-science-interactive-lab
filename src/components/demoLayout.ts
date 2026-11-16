@@ -47,7 +47,12 @@ export function mountDemoLayout(
   const slot = (name: string) =>
     root.querySelector<HTMLElement>(`[data-slot="${name}"]`)!;
   const controlHost = slot("controls");
-  if (demo.ready && !actions.start && !actions.step && session.number === "06")
+  if (
+    demo.ready &&
+    !actions.start &&
+    !actions.step &&
+    ["06", "07"].includes(session.number)
+  )
     controlHost.classList.add("s6-direct-controls");
   const controls = mountDemoControls(controlHost, actions);
   return {

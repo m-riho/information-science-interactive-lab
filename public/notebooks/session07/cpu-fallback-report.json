@@ -1,0 +1,14 @@
+{
+  "python": "3.13.5",
+  "measured_backends": [
+    "cpu"
+  ],
+  "notebooks": [
+    {
+      "file": "03_pytorch_gpu.ipynb",
+      "executed_code_cells": 4,
+      "errors": 0,
+      "figures": 1
+    }
+  ]
+}
