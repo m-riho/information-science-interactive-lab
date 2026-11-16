@@ -7,6 +7,7 @@ import { mountShortcut } from "./demos/shortcut-learning/view";
 import { mountWeighted, mountLearning } from "./demos/perceptron-learning/view";
 import { mountKmeans } from "./demos/kmeans/view";
 import { mountOverfit } from "./demos/overfitting/view";
+import { mountUniversalApproximation } from "./demos/universal-approximation/view";
 import {
   session07Materials,
   session07Path,
@@ -95,6 +96,7 @@ function render(): void {
         "perceptron-learning": mountLearning,
         kmeans: mountKmeans,
         overfitting: mountOverfit,
+        "universal-approximation": mountUniversalApproximation,
       };
       if (!material.ready) cleanup = mountMaterial07(root, material);
       else if (material.kind === "notebook")

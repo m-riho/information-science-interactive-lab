@@ -1,0 +1,17 @@
+.ua-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.ua-demo [hidden] { display: none !important; }
+.ua-demo p, .ua-demo li, .ua-demo a { overflow-wrap: anywhere; }
+.ua-demo .lesson-field { display: grid; gap: 4px; }
+.ua-demo select, .ua-demo input[type="number"] { min-height: 44px; width: 100%; min-width: 0; max-width: 100%; font: inherit; }
+.ua-plot { width: 100%; min-width: 360px; display: block; font: 14px system-ui, sans-serif; }
+.ua-scroll { overflow-x: auto; max-width: 100%; }
+.ua-legend { list-style: none; padding: 0; margin: 12px 0; }
+.ua-target { color: #414148; font-weight: bold; }
+.ua-model { color: var(--brand); font-weight: bold; }
+.ua-metrics { margin: 0 0 16px; }
+.ua-metrics dd { margin: 0 0 8px; font-size: 1.4rem; font-variant-numeric: tabular-nums; color: var(--brand-dark); }
+.ua-equation { overflow-wrap: anywhere; background: var(--brand-light); padding: 12px; font: 1.1rem/2 system-ui, sans-serif; }
+.ua-demo summary { cursor: pointer; min-height: 44px; font-weight: bold; }
+.ua-construct-controls [data-action]:not([data-action="reset"]), .ua-construct-controls .check { display: none; }
+.ua-demo .per-table { min-width: 360px; font-variant-numeric: tabular-nums; }
+@media (max-width: 850px) { .ua-grid { grid-template-columns: minmax(0, 1fr); } }

@@ -17,11 +17,11 @@ it.each(session07Materials)("$codeの一覧・直接リンク・前後移動が�
   expect(nav.next).toBe(session07Materials[i + 1]);
   expect(m.ready).toBe(true);
 });
-it("10デモと4Notebookを区別し、未作成の実行リンクは置かない", () => {
-  expect(new Set(session07Materials.map((m) => m.slug)).size).toBe(14);
+it("11デモと4Notebookを区別し、未作成の実行リンクは置かない", () => {
+  expect(new Set(session07Materials.map((m) => m.slug)).size).toBe(15);
   expect(
     session07Materials.filter((m) => m.kind === "javascript"),
-  ).toHaveLength(10);
+  ).toHaveLength(11);
   expect(session07Materials.filter((m) => m.kind === "notebook")).toHaveLength(
     4,
   );
@@ -30,4 +30,9 @@ it("10デモと4Notebookを区別し、未作成の実行リンクは置かな�
   expect(html).not.toMatch(/href="[^"]+\.ipynb"/);
   expect(parseRoute(session07Path)).toEqual({ kind: "session07" });
   expect(parseRoute(session07Path + "/bad/extra")).toEqual({ kind: "missing" });
+});
+it("既存14教材のslugと新しいJS11を維持する", () => {
+  const original = ["kmeans", "reinforcement-learning", "alphago-search", "weighted-sum", "perceptron-learning", "activation-functions", "xor-neural-network", "overfitting", "confusion-matrix", "shortcut-learning", "digits-kmeans", "digits-mlp", "pytorch-gpu", "image-classification"];
+  expect(session07Materials.filter(m => m.code !== "JS11").map(m => m.slug)).toEqual(original);
+  expect(session07Materials.find(m => m.code === "JS11")).toMatchObject({ slug: "universal-approximation", ready: true });
 });

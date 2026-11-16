@@ -1,14 +1,20 @@
 # 立教大学「情報科学A」インタラクティブ教材
 
-文系学生・高校「情報I」未履修者向けの日本語教材です。第3〜7回のブラウザデモ41本と、第7回の実行済みNotebook4本を実装しています。
+文系学生・高校「情報I」未履修者向けの日本語教材です。第3〜7回のブラウザデモ42本と、第7回の実行済みNotebook4本を実装しています。
 
 ## 第7回：コンピュータはどのようにデータから学習するのか？
 
-一覧は `#/sessions/07`。JavaScriptデモ10本とPython Notebook 4本を予定しています。全14教材を実装し、JavaScript全10件・実行済みNotebook 4件が利用可能です。各教材の内容ページでは対応スライド・学習目的・問いを確認できます。Notebookは日本語説明・実行済み出力・条件を変える実験を含みます。
+一覧は `#/sessions/07`。当初の14教材にJS11を追加し、JavaScriptデモ11本・実行済みNotebook 4本の全15教材が利用可能です。各教材の内容ページでは対応スライド・学習目的・問いを確認できます。Notebookは日本語説明・実行済み出力・条件を変える実験を含みます。
 
 既存の `index.html`、共通CSS・操作部品とHash Routerへ統合しています。実装方針と次のフェーズは [docs/session07-implementation.md](docs/session07-implementation.md) を参照してください。Notebookのダウンロードと、既存公開リポジトリを対象とするGitHub・Colabへのリンクを各教材ページに用意しました。GitHubでは保存済み出力を閲覧し、Colabではコピーして実行できます。
 
 起動・型チェック・テスト・ビルドは下記と同じ手順を使います。ビルド後のURLは `/information-science-interactive-lab/#/sessions/07`。第7回の入口は公開サイトの `#/sessions/07` です。
+
+### JS11：普遍近似定理（追加教材）
+
+`#/sessions/07/universal-approximation`。sin(x)・x²・|x|を、1入力→N個のReLU→線形出力で近似します。構成モードは等間隔の節点から重みを計算し、学習モードは固定シードの乱数から全パラメータをAdamで更新します。N=2〜32（初期8）、学習率・更新上限・シードを変更できます。1ステップ・自動実行・停止・リセットに対応し、曲線、有限401点の最大絶対誤差とMSE、訓練／未使用評価MSE、訓練損失の推移、全ユニットのパラメータを表示します。
+
+指定の静的入口 `/information-science-interactive-lab/demos/11-universal-approximation/index.html` からも同じ画面へ移動できます。開発時は `npm run dev` のURLにHash Routerのパスを付け、本番相当は `npm run build && npm run preview` で確認します。数理仕様・注意点は [docs/universal-approximation.md](docs/universal-approximation.md)、検証記録は [docs/universal-approximation-validation.md](docs/universal-approximation-validation.md) を参照してください。[GitHub PagesでJS11を開く](https://m-riho.github.io/information-science-interactive-lab/#/sessions/07/universal-approximation)
 
 ### 第7回 Phase 2：基本的な機械学習
 
