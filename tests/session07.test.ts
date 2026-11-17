@@ -17,11 +17,11 @@ it.each(session07Materials)("$codeの一覧・直接リンク・前後移動が�
   expect(nav.next).toBe(session07Materials[i + 1]);
   expect(m.ready).toBe(true);
 });
-it("11デモと4Notebookを区別し、未作成の実行リンクは置かない", () => {
-  expect(new Set(session07Materials.map((m) => m.slug)).size).toBe(15);
+it("14デモと4Notebookを区別し、未作成の実行リンクは置かない", () => {
+  expect(new Set(session07Materials.map((m) => m.slug)).size).toBe(18);
   expect(
     session07Materials.filter((m) => m.kind === "javascript"),
-  ).toHaveLength(11);
+  ).toHaveLength(14);
   expect(session07Materials.filter((m) => m.kind === "notebook")).toHaveLength(
     4,
   );
@@ -33,6 +33,6 @@ it("11デモと4Notebookを区別し、未作成の実行リンクは置かな�
 });
 it("既存14教材のslugと新しいJS11を維持する", () => {
   const original = ["kmeans", "reinforcement-learning", "alphago-search", "weighted-sum", "perceptron-learning", "activation-functions", "xor-neural-network", "overfitting", "confusion-matrix", "shortcut-learning", "digits-kmeans", "digits-mlp", "pytorch-gpu", "image-classification"];
-  expect(session07Materials.filter(m => m.code !== "JS11").map(m => m.slug)).toEqual(original);
+  expect(session07Materials.filter(m => !["JS11", "JS12", "JS13", "JS14"].includes(m.code)).map(m => m.slug)).toEqual(original);
   expect(session07Materials.find(m => m.code === "JS11")).toMatchObject({ slug: "universal-approximation", ready: true });
 });

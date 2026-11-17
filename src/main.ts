@@ -1,3 +1,5 @@
+import { mountGradientDescent } from "./demos/gradient-descent/view";
+import { mountDigitTraining } from "./demos/digit-training/view";
 import { mountActivation } from "./demos/activation-functions/view";
 import { mountConfusion } from "./demos/confusion-matrix/view";
 import { mountXor } from "./demos/xor-network/view";
@@ -96,6 +98,9 @@ function render(): void {
         "perceptron-learning": mountLearning,
         kmeans: mountKmeans,
         overfitting: mountOverfit,
+        "gradient-descent": mountGradientDescent,
+        "digit-network-js": (root: HTMLElement) => mountDigitTraining(root, "js"),
+        "digit-network-tfjs": (root: HTMLElement) => mountDigitTraining(root, "tf"),
         "universal-approximation": mountUniversalApproximation,
       };
       if (!material.ready) cleanup = mountMaterial07(root, material);

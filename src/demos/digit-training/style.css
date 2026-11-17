@@ -1,0 +1,10 @@
+.digit-work .transport label { display:grid; gap:.25rem; }
+.digit-work select { font:inherit; min-height:44px; }
+.digit-work .flow { display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; }
+.digit-work .flow strong { border:1px solid var(--border); border-radius:.5rem; padding:.5rem; }
+.digit-canvases { display:flex; flex-wrap:wrap; align-items:flex-end; gap:1rem; margin:1rem 0; }
+.digit-canvases canvas { display:block; background:black; margin-top:.3rem; }
+.digit-canvases [data-ink] { width:min(196px,100%); touch-action:none; }
+.digit-canvases [data-preview] { width:84px; image-rendering:pixelated; }
+.digit-work .metrics { font-variant-numeric:tabular-nums; }
+.digit-work details summary { cursor:pointer; min-height:44px; }

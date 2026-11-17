@@ -1,14 +1,28 @@
 # 立教大学「情報科学A」インタラクティブ教材
 
-文系学生・高校「情報I」未履修者向けの日本語教材です。第3〜7回のブラウザデモ42本と、第7回の実行済みNotebook4本を実装しています。
+文系学生・高校「情報I」未履修者向けの日本語教材です。第3〜7回のブラウザデモ45本と、第7回の実行済みNotebook4本を実装しています。
 
 ## 第7回：コンピュータはどのようにデータから学習するのか？
 
-一覧は `#/sessions/07`。当初の14教材にJS11を追加し、JavaScriptデモ11本・実行済みNotebook 4本の全15教材が利用可能です。各教材の内容ページでは対応スライド・学習目的・問いを確認できます。Notebookは日本語説明・実行済み出力・条件を変える実験を含みます。
+一覧は `#/sessions/07`。JavaScriptデモ14本・実行済みNotebook 4本の全18教材が利用可能です。各教材の内容ページでは対応スライド・学習目的・問いを確認できます。Notebookは日本語説明・実行済み出力・条件を変える実験を含みます。
 
 既存の `index.html`、共通CSS・操作部品とHash Routerへ統合しています。実装方針と次のフェーズは [docs/session07-implementation.md](docs/session07-implementation.md) を参照してください。Notebookのダウンロードと、既存公開リポジトリを対象とするGitHub・Colabへのリンクを各教材ページに用意しました。GitHubでは保存済み出力を閲覧し、Colabではコピーして実行できます。
 
 起動・型チェック・テスト・ビルドは下記と同じ手順を使います。ビルド後のURLは `/information-science-interactive-lab/#/sessions/07`。第7回の入口は公開サイトの `#/sessions/07` です。
+
+### JS12〜JS14：勾配降下法と手書き数字の分類
+
+| 教材（第7回URLの末尾） | 授業での操作 |
+| --- | --- |
+| JS12 `gradient-descent` | 初期位置を−1と1にして、同じ4次関数で異なる谷に着く様子を比較。η=0.5では振動・発散による停止も観察できる。 |
+| JS13 `digit-network-js` | 1バッチ進めて、中間層から出力への重みが実際の勾配でどれだけ変わるか読む。学習後は指やマウスで数字を書いて判定する。 |
+| JS14 `digit-network-tfjs` | 同じMNIST画像・初期重み・訓練順でTensorFlow.js版を学習し、JS13の結果と比較する。比較結果はページを開いている間だけ保持する。 |
+
+標準設定は訓練2,000枚、テスト500枚、学習率0.01、ミニバッチ32、3エポック。どちらも数字1とその他を1対1にした二値分類で、学習済みの重みを選ぶと最初から判定を試せる。[MNISTの出典、CC BY-SA 3.0、抽出方法と学習済み重み](public/data/session07-digits/README.md)。
+
+内蔵ブラウザの本番プレビューで、標準設定の更新時間（評価・描画待ちを除く）はJS13が0.21秒、JS14が10.73秒。両者ともテスト正解率98.8%、数字1の再現率99.2%だった。TensorFlow.js 4.22.0はJS14で読み込み、バックエンドはライブラリの自動選択を使う。GitHub Pagesと同じサブパスのプレビューで、320px幅、手書き入力、1バッチ更新・停止・リセット、デモ間の結果比較を確認した。
+
+実装ファイルは `src/demos/gradient-descent/{model,chart,view}.ts`、`src/demos/digit-training/{model,tfModel,types,data,pad,common,view}.ts` と `style.css`。配布データ・学習済み重み・出典は `public/data/session07-digits/`、再生成は `scripts/prepare_session07_digits.py`。ルートと一覧は `src/main.ts` と `src/sessions/session07.ts`。依存と版は `package.json` と `package-lock.json`。検証は `tests/{gradient-descent,digit-training,session07-digit-data,session07}.test.ts`。
 
 ### JS11：普遍近似定理（追加教材）
 
