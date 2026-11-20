@@ -9,15 +9,15 @@ const base=process.env.DEMO_BASE??'http://127.0.0.1:4178/information-science-int
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const context=await browser.newContext({viewport:{width:1280,height:900}});const page=await context.newPage();const errors=[];const report=[];
 page.on('pageerror',e=>errors.push(e.message));
-const open=async slug=>{await page.goto(base+'#/sessions/08'+(slug?'/'+slug:''));await page.waitForFunction(slug=>{const titles={'tokenizer':'トークナイザの動作','next-token':'次のトークン予測と文章生成','temperature':'Temperatureとサンプリング','embedding':'Embeddingと単語の関係','attention':'Attentionの計算','causal-mask':'Causal Maskの仕組み','self-supervised':'自己教師あり学習','rag':'RAGと回答の検証','':'生成AIはなぜ自然な文章を作れるのか？'};return document.querySelector('h1')?.textContent===titles[slug];},slug);if(slug==='tokenizer')await page.locator('[data-analyze]:enabled').waitFor();};
+const open=async slug=>{await page.goto(base+'#/sessions/08'+(slug?'/'+slug:''));await page.waitForFunction(slug=>{const titles={'tokenizer':'トークナイザの動作','next-token':'次のトークン予測と文章生成','temperature':'Temperatureとサンプリング','embedding':'Embeddingと単語の関係','attention':'Attentionの計算','causal-mask':'Causal Maskの仕組み','self-supervised':'自己教師あり学習','context-figure':'中央の記号はどう読める？','rag':'RAGと回答の検証','':'生成AIはなぜ自然な文章を作れるのか？'};return document.querySelector('h1')?.textContent===titles[slug];},slug);if(slug==='tokenizer')await page.locator('[data-analyze]:enabled').waitFor();};
 const reset=()=>page.locator('[data-action=reset]').click();
 const step=()=>page.locator('[data-action=step]').click();
 const status=()=>page.locator('[data-slot=status]').innerText();
 const shot=async slug=>{await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:path.join(out,slug+'.png'),fullPage:true});};
-const slugs=['tokenizer','next-token','temperature','embedding','attention','causal-mask','self-supervised','rag'];
+const slugs=['tokenizer','next-token','temperature','embedding','attention','causal-mask','self-supervised','rag','context-figure'];
 try{
-await open('');assert.equal(await page.locator('.card.available').count(),8);await shot('index');
-for(const session of ['06','07']){await page.goto(base+'#/sessions/'+session);await page.locator('a.back[href="#/sessions/08"]').click();await page.waitForFunction(()=>document.querySelector('h1')?.textContent==='生成AIはなぜ自然な文章を作れるのか？');assert.equal(await page.locator('.card.available').count(),8);}report.push('8-demo index and navigation from sessions 06/07');
+await open('');assert.equal(await page.locator('.card.available').count(),9);await shot('index');
+for(const session of ['06','07']){await page.goto(base+'#/sessions/'+session);await page.locator('a.back[href="#/sessions/08"]').click();await page.waitForFunction(()=>document.querySelector('h1')?.textContent==='生成AIはなぜ自然な文章を作れるのか？');assert.equal(await page.locator('.card.available').count(),9);}report.push('9-demo index and navigation from sessions 06/07');
 await open('tokenizer');assert.equal(await page.locator('[data-token]').count(),14);await page.locator('[data-token="4"]').click();assert.match(await page.locator('[data-details]').innerText(),/e5 82/);assert.match(await page.locator('[data-details]').innerText(),/不可/);await page.locator('[data-english]').click();assert.equal(await page.locator('[data-token]').count(),4);await page.locator('textarea').fill('<img src=x onerror=alert(1)>😀\n');await page.locator('[data-analyze]').click();assert.equal(await page.locator('[data-tokens] img').count(),0);await page.locator('textarea').fill('');await page.locator('[data-analyze]').click();assert.equal(await page.locator('[data-token]').count(),0);await reset();assert.equal(await page.locator('[data-token]').count(),14);await shot('tokenizer');report.push('tokenizer: IDs, bytes, English, Unicode, empty input, escaped HTML, reset');
 await open('next-token');await page.locator('[data-candidate="2"]').click();assert.match(await page.locator('[data-text]').innerText(),/忘れて$/);assert.match(await page.locator('[data-candidate="0"]').innerText(),/困りました/);await reset();await page.locator('[data-action=start]').click();await page.waitForFunction(()=>document.querySelector('[data-progress]')?.textContent.includes('生成終了'),{},{timeout:7000});assert(await page.locator('[data-action=start]').isDisabled());assert.equal(await page.locator('[data-history] li').count(),4);await reset();await page.locator('[data-mode]').selectOption('sampling');await step();assert.equal(await page.locator('[data-history] li').count(),1);await reset();await shot('next-token');report.push('generation: conditional branch, both selection modes, auto EOS, history, reset');
 await open('temperature');await page.locator('[data-hundred]').click();assert.match(await page.locator('[data-total]').innerText(),/100回/);await page.locator('[data-slider]').fill('0.5');assert.match(await page.locator('[data-total]').innerText(),/0回/);const low=await page.locator('[data-bars] meter').first().getAttribute('value');assert(Number(low)>.82);await step();assert.match(await page.locator('[data-total]').innerText(),/1回/);await reset();assert.equal(await page.locator('[data-slider]').inputValue(),'1');await shot('temperature');report.push('temperature: distribution, 1/100 draws, history, parameter reset');
@@ -26,6 +26,28 @@ await open('attention');for(let i=0;i<4;i++)await step();assert.match(await page
 await open('causal-mask');await page.locator('[data-row="1"]').click();assert.match(await page.locator('[data-explanation]').innerText(),/「雨」は参照できません/);await page.locator('[data-row="2"]').click();assert.match(await page.locator('[data-explanation]').innerText(),/「です」は参照できません/);await page.locator('[data-mask]').uncheck();assert.match(await page.locator('[data-explanation]').innerText(),/正解が見えています/);await page.locator('[data-row="3"]').click();assert.match(await page.locator('[data-explanation]').innerText(),/提示していません/);await reset();assert(await page.locator('[data-mask]').isChecked());await shot('causal-mask');report.push('causal mask: all rows, future leakage, last-row distinction, reset');
 await open('self-supervised');assert.match(await page.locator('[data-pair]').innerText(),/今日は雨なので/);await page.locator('[data-all]').click();assert.equal(await page.locator('[data-examples] tbody tr').count(),9);await page.locator('[data-position="9"]').click();assert(await page.locator('[data-action=step]').isDisabled());await reset();assert(await page.locator('[data-examples]').isHidden());await shot('self-supervised');report.push('self-supervised: targets, 9 training pairs, stop and reset');
 await open('rag');for(let i=0;i<6;i++)await step();assert.match(await page.locator('[data-stage]').innerText(),/9時〜20時/);await page.locator('[data-answer]').selectOption('misread');for(let i=0;i<6;i++)await step();assert.match(await page.locator('[data-stage]').innerText(),/一致していません/);await page.locator('[data-sources]').selectOption('old');for(let i=0;i<6;i++)await step();assert.match(await page.locator('[data-stage]').innerText(),/旧版Bは/);await page.locator('[data-question]').selectOption('exam');for(let i=0;i<6;i++)await step();assert.match(await page.locator('[data-stage]').innerText(),/根拠を超えた回答/);await page.locator('[data-question]').selectOption('parking');for(let i=0;i<6;i++)await step();assert.match(await page.locator('[data-stage]').innerText(),/根拠なし/);await reset();await shot('rag');report.push('RAG: 7 stages, new/old version, misreading, date conditions, no evidence, reset');
-for(const width of [1280,768,390]){await page.setViewportSize({width,height:width===1280?720:900});for(const slug of slugs){await open(slug);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${slug} overflow at ${width}`);await reset();if(width===390)await shot(slug+'-mobile');}}report.push('all 8 routes and reset at 1280×720, 768×900, 390×900; no page-level overflow');
+await open('context-figure');
+const center = page.locator('.center-glyph');
+const horizontal = page.locator('input[name=horizontal]');
+const vertical = page.locator('input[name=vertical]');
+await horizontal.scrollIntoViewIfNeeded();
+const original = await center.boundingBox();
+const shape = await center.innerHTML();
+for (const [h, v] of [[false,false],[true,false],[true,true],[false,true]]) {
+  await horizontal.setChecked(h);
+  await vertical.setChecked(v);
+  assert.equal(await page.locator('.horizontal-neighbors').isVisible(), h);
+  assert.equal(await page.locator('.vertical-neighbors').isVisible(), v);
+  assert.deepEqual(await center.boundingBox(), original);
+  assert.equal(await center.innerHTML(), shape);
+}
+await reset();
+await horizontal.focus();
+await page.keyboard.press('Space');
+assert(await horizontal.isChecked());
+assert(!await vertical.isChecked());
+await shot('context-figure');
+report.push('B/13: four configurations, invariant central glyph, reset and keyboard');
+for(const width of [1280,768,390]){await page.setViewportSize({width,height:width===1280?720:900});for(const slug of slugs){await open(slug);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${slug} overflow at ${width}`);await reset();if(width===390)await shot(slug+'-mobile');}}report.push('all 9 routes and reset at 1280×720, 768×900, 390×900; no page-level overflow');
 assert.deepEqual(errors,[]);const result={date:'2026-11-21',browser:await browser.version(),mode:'macOS Chrome via Playwright headless',base,checks:report,errors};await fs.writeFile(path.join(out,'chrome-results.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
 }finally{await browser.close();}

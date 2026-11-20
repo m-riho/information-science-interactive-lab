@@ -32,7 +32,7 @@ export function mountAttention(root: HTMLElement): () => void {
     <p>「彼女」の位置から3つの語を参照する、2次元の教材用計算です。文章からベクトルを推定する実際のLLMは使いません。</p>
     <div class="llm-grid"><section class="llm-panel"><h2>Query・Keyの設定</h2><p>成分は−10〜10。Valueは固定です。</p>${componentInputs("Query q（彼女）", "q", query)}${keys.map((key, i) => componentInputs(`Key k（${attentionLabels[i]}）`, String(i), key)).join("")}</section>
     <section class="llm-panel"><h2>5段階の計算</h2><ol data-stages>${stages.map(label => `<li>${label}</li>`).join("")}</ol><div data-calculation></div></section></div>
-    <section class="llm-panel"><h2>読み取りの注意</h2><p>スライド25〜27の 0.2・0.7・0.1 は説明用の架空の重みです。ここでは指定したベクトルから内積・Softmaxを実計算するため、別の値になります。</p><p>実際のモデルでは学習された行列 W<sub>Q</sub>・W<sub>K</sub>・W<sub>V</sub>で表現を変換します。この画面は変換後のQuery・Key・Valueを直接指定しています。学習パラメータは学習で更新されますが、Attentionの重みは入力からその都度計算されます。</p><p>Attentionの重みは人間の意味理解そのものでも、代名詞の指示対象を直接推定した結果でもありません。ここでは単一ヘッドの重み付き和を示し、Transformer全体の処理や残差接続は再現していません。</p></section>`;
+    <section class="llm-panel"><h2>読み取りの注意</h2><p>スライド30〜32の 0.2・0.7・0.1 は説明用の架空の重みです。ここでは指定したベクトルから内積・Softmaxを実計算するため、別の値になります。</p><p>実際のモデルでは学習された行列 W<sub>Q</sub>・W<sub>K</sub>・W<sub>V</sub>で表現を変換します。この画面は変換後のQuery・Key・Valueを直接指定しています。学習パラメータは学習で更新されますが、Attentionの重みは入力からその都度計算されます。</p><p>Attentionの重みは人間の意味理解そのものでも、代名詞の指示対象を直接推定した結果でもありません。ここでは単一ヘッドの重み付き和を示し、Transformer全体の処理や残差接続は再現していません。</p></section>`;
   const calculation = layout.body.querySelector<HTMLElement>("[data-calculation]")!;
   const inputs = [...layout.body.querySelectorAll<HTMLInputElement>("input[data-vector]")];
   const readComponent = (input: HTMLInputElement) => {

@@ -14,10 +14,10 @@ it.each(session08Demos)("$code の直接リンク・一覧・前後移動", demo
   expect(navigation.previous).toBe(session08Demos[index - 1]);
   expect(navigation.next).toBe(session08Demos[index + 1]);
 });
-it("授業内6本・復習2本と前回からの導線を提供する", () => {
-  expect(session08Demos).toHaveLength(8);
-  expect(new Set(session08Demos.map(item => item.slug)).size).toBe(8);
-  expect(session08Demos.filter(item => item.usage === "授業内使用")).toHaveLength(6);
+it("授業内7本・復習2本と前回からの導線を提供する", () => {
+  expect(session08Demos).toHaveLength(9);
+  expect(new Set(session08Demos.map(item => item.slug)).size).toBe(9);
+  expect(session08Demos.filter(item => item.usage === "授業内使用")).toHaveLength(7);
   expect(session08Demos.filter(item => item.usage === "復習用")).toHaveLength(2);
   expect(renderSession06()).toContain('href="#/sessions/08"');
   expect(renderSession07()).toContain('href="#/sessions/08"');

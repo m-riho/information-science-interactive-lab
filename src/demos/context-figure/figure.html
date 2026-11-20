@@ -1,0 +1,21 @@
+<form class="context-figure">
+  <p>まず中央の形を見てください。次に周りの文字を表示して、どう読めるか比べてみましょう。</p>
+  <fieldset>
+    <legend>周りに表示する文字</legend>
+    <label><input type="checkbox" name="horizontal" autocomplete="off"> 横の A・C</label>
+    <label><input type="checkbox" name="vertical" autocomplete="off"> 縦の 12・14</label>
+    <button type="reset" data-action="reset">中央だけに戻す</button>
+  </fieldset>
+  <svg class="context-board" viewBox="0 0 480 338" role="img" aria-label="中央に縦棒と、右側に二つの丸みを持つ記号。チェックした方向に周囲の文字を表示します。">
+    <g fill="#181818" text-anchor="middle" font-family="'Hiragino Sans', sans-serif" font-weight="700" font-size="82">
+      <g class="horizontal-neighbors"><text x="85" y="198">A</text><text x="395" y="198">C</text></g>
+      <g class="vertical-neighbors"><text x="240" y="77">12</text><text x="240" y="316">14</text></g>
+    </g>
+    <g class="center-glyph" fill="#181818" transform="translate(180 114)">
+      <rect width="19" height="110"></rect>
+      <path transform="translate(30 0)" d="M0 0 H48 C91 0 97 42 59 54 C102 61 99 110 48 110 H0 V91 H46 C73 91 73 65 46 65 H9 V46 H46 C72 46 72 19 46 19 H0 Z"></path>
+    </g>
+  </svg>
+  <details><summary>読み方を確かめる</summary><p>横に読むと A・B・C、縦に読むと 12・13・14。中央は同じ形でも、周りの並びが読み方の手がかりになります。</p></details>
+  <p class="figure-credit">丸岡章『概説 人工知能』（筑摩書房、2024年）159頁、図8.1「Bと13の見え方」をもとに再作図。</p>
+</form>

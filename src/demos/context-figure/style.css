@@ -1,0 +1,24 @@
+.context-figure {
+  max-width: 56rem;
+  margin: 0 auto;
+  color: #272133;
+  font: 1rem/1.65 "Hiragino Sans", system-ui, sans-serif;
+}
+.context-figure fieldset { border: 0; padding: 0; margin: 1rem 0; }
+.context-figure legend { font-weight: bold; padding: 0; }
+.context-figure label, .context-figure button {
+  display: inline-flex; align-items: center; gap: .55em; min-height: 44px;
+  box-sizing: border-box; padding: .4rem .85rem; margin: .2rem .3rem .2rem 0;
+  border: 1px solid #b6a5bd; border-radius: .4rem; background: #fff;
+  color: #49275b; font: inherit; cursor: pointer;
+}
+.context-figure input { accent-color: #643478; width: 1.15rem; height: 1.15rem; }
+.context-figure label:has(:checked) { background: #efe7f3; border-color: #643478; }
+.context-figure :focus-visible { outline: 3px solid #643478; outline-offset: 2px; }
+.context-figure .context-board { display: block; width: 100%; height: clamp(230px, 46vh, 480px); background: white; border: 1px solid #ded6e3; box-sizing: border-box; }
+.context-figure .horizontal-neighbors, .context-figure .vertical-neighbors { visibility: hidden; }
+.context-figure:has([name=horizontal]:checked) .horizontal-neighbors,
+.context-figure:has([name=vertical]:checked) .vertical-neighbors { visibility: visible; }
+.context-figure details { margin-top: .65rem; }
+.context-figure summary { cursor: pointer; width: fit-content; padding-block: .6rem; color: #49275b; }
+.context-figure .figure-credit { font-size: .85rem; color: #605669; }
