@@ -10,6 +10,8 @@ export type Route =
   | { kind: "demo06"; slug: string }
   | { kind: "session07" }
   | { kind: "material07"; slug: string }
+  | { kind: "session08" }
+  | { kind: "demo08"; slug: string }
   | { kind: "missing" };
 export function parseRoute(hash: string): Route {
   const path = hash.replace(/^#/, "") || "/";
@@ -19,6 +21,9 @@ export function parseRoute(hash: string): Route {
   if (path === "/sessions/05") return { kind: "session05" };
   if (path === "/sessions/06") return { kind: "session06" };
   if (path === "/sessions/07") return { kind: "session07" };
+  if (path === "/sessions/08") return { kind: "session08" };
+  const eighth = /^\/sessions\/08\/([a-z0-9-]+)$/.exec(path);
+  if (eighth?.[1]) return { kind: "demo08", slug: eighth[1] };
   const seventh = /^\/sessions\/07\/([a-z0-9-]+)$/.exec(path);
   if (seventh?.[1]) return { kind: "material07", slug: seventh[1] };
   const sixth = /^\/sessions\/06\/([a-z0-9-]+)$/.exec(path);

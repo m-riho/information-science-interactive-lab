@@ -1,3 +1,13 @@
+import { session08Demos, session08Path, session08Title } from "./sessions/session08";
+import { renderSession08 } from "./sessions/session08View";
+import { mountTokenizer } from "./demos/tokenizer/view";
+import { mountNextToken } from "./demos/next-token/view";
+import { mountTemperature } from "./demos/temperature/view";
+import { mountAttention } from "./demos/attention/view";
+import { mountCausalMask } from "./demos/causal-mask/view";
+import { mountRag } from "./demos/rag/view";
+import { mountSelfSupervised } from "./demos/self-supervised/view";
+import { mountEmbedding } from "./demos/embedding/view";
 import { mountGradientDescent } from "./demos/gradient-descent/view";
 import { mountDigitTraining } from "./demos/digit-training/view";
 import { mountActivation } from "./demos/activation-functions/view";
@@ -76,7 +86,23 @@ function render(): void {
   const route = parseRoute(location.hash);
   if (route.kind === "home") {
     document.title = "情報科学A | 立教大学";
-    root.innerHTML = `<section class="hero"><p class="eyebrow">RIKKYO UNIVERSITY / INFORMATION SCIENCE A</p><h1>見て、動かして、<br><em>しくみ</em>をつかもう。</h1><p class="lead">コンピュータの「なぜ？」を、小さな実験から。<br>予想して、試して、自分の言葉で説明してみよう。</p><span class="hero-symbol" aria-hidden="true">01<br>10</span></section><div class="section-heading"><h2>授業から探す</h2><span>SESSIONS</span></div><a class="session-card" href="#/sessions/03"><span class="session-number">03</span><div><p class="eyebrow">第3回 / 7つの実験</p><h2>コンピュータの仕組み</h2><p>映像の見え方から、記憶と計算のしくみまで。</p><span class="badge">${publishedCount}件公開中${demos.length > publishedCount ? ` · ${demos.length - publishedCount}件準備中` : ""}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card session04-card" href="#/sessions/04"><span class="session-number">04</span><div><p class="eyebrow">Information Science A / Session 04</p><h2>記憶回路からCPU・機械語へ</h2><p>0と1の記憶から、命令を実行するしくみへ。</p><span class="badge">${session04Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="#/sessions/05"><span class="session-number">05</span><div><p class="eyebrow">Information Science A / Session 05</p><h2>プログラミング言語と計算の限界</h2><p>計算の表し方から、計算できること・難しいことへ。</p><span class="badge">${session05Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="#/sessions/06"><span class="session-number">06</span><div><p class="eyebrow">Information Science A / Session 06</p><h2>${session06Title}</h2><p>ニューラルネットワークから、探索・推論・対話へ。</p><span class="badge">${session06Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="${session07Path}"><span class="session-number">07</span><div><p class="eyebrow">Information Science A / Session 07</p><h2>${session07Title}</h2><p>データからの学習と、未知のデータへの予測を体験しよう。</p><span class="badge">${session07Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><p class="note">事前知識は不要です。気になるデモから始めてください。</p>`;
+    root.innerHTML = `<section class="hero"><p class="eyebrow">RIKKYO UNIVERSITY / INFORMATION SCIENCE A</p><h1>見て、動かして、<br><em>しくみ</em>をつかもう。</h1><p class="lead">コンピュータの「なぜ？」を、小さな実験から。<br>予想して、試して、自分の言葉で説明してみよう。</p><span class="hero-symbol" aria-hidden="true">01<br>10</span></section><div class="section-heading"><h2>授業から探す</h2><span>SESSIONS</span></div><a class="session-card" href="#/sessions/03"><span class="session-number">03</span><div><p class="eyebrow">第3回 / 7つの実験</p><h2>コンピュータの仕組み</h2><p>映像の見え方から、記憶と計算のしくみまで。</p><span class="badge">${publishedCount}件公開中${demos.length > publishedCount ? ` · ${demos.length - publishedCount}件準備中` : ""}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card session04-card" href="#/sessions/04"><span class="session-number">04</span><div><p class="eyebrow">Information Science A / Session 04</p><h2>記憶回路からCPU・機械語へ</h2><p>0と1の記憶から、命令を実行するしくみへ。</p><span class="badge">${session04Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="#/sessions/05"><span class="session-number">05</span><div><p class="eyebrow">Information Science A / Session 05</p><h2>プログラミング言語と計算の限界</h2><p>計算の表し方から、計算できること・難しいことへ。</p><span class="badge">${session05Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="#/sessions/06"><span class="session-number">06</span><div><p class="eyebrow">Information Science A / Session 06</p><h2>${session06Title}</h2><p>ニューラルネットワークから、探索・推論・対話へ。</p><span class="badge">${session06Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="${session07Path}"><span class="session-number">07</span><div><p class="eyebrow">Information Science A / Session 07</p><h2>${session07Title}</h2><p>データからの学習と、未知のデータへの予測を体験しよう。</p><span class="badge">${session07Summary}</span></div><span class="arrow" aria-hidden="true">→</span></a><a class="session-card" href="${session08Path}"><span class="session-number">08</span><div><p class="eyebrow">Information Science A / Session 08</p><h2>${session08Title}</h2><p>大規模言語モデルの仕組みと、その能力・限界</p><span class="badge">8本利用可能</span></div><span class="arrow" aria-hidden="true">→</span></a><p class="note">事前知識は不要です。気になるデモから始めてください。</p>`;
+  } else if (route.kind === "session08") {
+    document.title = session08Title + " | 情報科学A 第8回";
+    root.innerHTML = renderSession08();
+  } else if (route.kind === "demo08") {
+    const demo = session08Demos.find(item => item.slug === route.slug);
+    const mounts: Record<string, (root: HTMLElement) => () => void> = {
+      tokenizer: mountTokenizer, "next-token": mountNextToken,
+      temperature: mountTemperature, embedding: mountEmbedding,
+      attention: mountAttention, "causal-mask": mountCausalMask,
+      "self-supervised": mountSelfSupervised, rag: mountRag,
+    };
+    const mount = mounts[route.slug];
+    if (demo && mount) {
+      document.title = demo.title + " | 情報科学A 第8回";
+      cleanup = mount(root);
+    } else missing();
   } else if (route.kind === "session07") {
     document.title = session07Title + " | 情報科学A 第7回";
     root.innerHTML = renderSession07();

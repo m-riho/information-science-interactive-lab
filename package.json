@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "4.22.0",
+    "js-tiktoken": "1.0.21",
     "p5": "^1.11.11"
   },
   "devDependencies": {

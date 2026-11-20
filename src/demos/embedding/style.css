@@ -1,0 +1,8 @@
+.embedding-plot { min-width: 320px; max-width: 520px; margin-inline: auto; overflow: visible; }
+.embedding-plot [data-point] { cursor: grab; touch-action: none; }
+.embedding-plot [data-point]:active { cursor: grabbing; }
+.embedding-plot .embedding-dot { fill: var(--brand); stroke: white; stroke-width: 2; }
+.embedding-plot [aria-pressed="true"] .embedding-dot { stroke: #1c1326; stroke-width: 4; }
+.embedding-plot [data-point]:focus { outline: none; }
+.embedding-plot [data-point]:focus-visible .embedding-hit { stroke: #1c1326; stroke-width: 3; stroke-dasharray: 4 3; }
+.embedding-plot .embedding-label { fill: currentColor; font-weight: 700; font-size: 17px; paint-order: stroke; stroke: #faf8fc; stroke-width: 3px; }

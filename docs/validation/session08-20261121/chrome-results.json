@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-21",
+  "browser": "157.0.8103.79",
+  "mode": "macOS Chrome via Playwright headless",
+  "base": "http://127.0.0.1:4178/information-science-interactive-lab/",
+  "checks": [
+    "8-demo index and navigation from sessions 06/07",
+    "tokenizer: IDs, bytes, English, Unicode, empty input, escaped HTML, reset",
+    "generation: conditional branch, both selection modes, auto EOS, history, reset",
+    "temperature: distribution, 1/100 draws, history, parameter reset",
+    "embedding: selection, coordinate editing, keyboard, drag, reset",
+    "attention: 5 stages, numeric result, invalid input, auto stop, reduced motion, visibility-event stop",
+    "causal mask: all rows, future leakage, last-row distinction, reset",
+    "self-supervised: targets, 9 training pairs, stop and reset",
+    "RAG: 7 stages, new/old version, misreading, date conditions, no evidence, reset",
+    "all 8 routes and reset at 1280×720, 768×900, 390×900; no page-level overflow"
+  ],
+  "errors": []
+}

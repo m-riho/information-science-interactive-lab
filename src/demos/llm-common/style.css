@@ -1,0 +1,28 @@
+.llm-body { font-size: 1.05rem; }
+.llm-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:1.2rem; align-items:start; }
+.llm-panel { padding:1.2rem; background:#faf8fc; border:1px solid #ded4e7; border-radius:12px; min-width:0; }
+.llm-panel h2 { margin-top:0; }
+.llm-body label { display:block; margin:.7rem 0; }
+.llm-body input[type=number], .llm-body select, .llm-body textarea { max-width:100%; padding:.6rem; border:1px solid #776486; border-radius:6px; font:inherit; }
+.llm-body input[type=number] { width:6rem; }
+.llm-body textarea { width:100%; min-height:100px; }
+.llm-body input[type=range] { width:100%; }
+.llm-body button { min-height:44px; min-width:44px; margin:.2rem; }
+.llm-body button[aria-pressed=true] { background:#4b286d; color:white; }
+.llm-body .llm-tokens { display:flex; flex-wrap:wrap; gap:.4rem; margin:1rem 0; }
+.llm-token { border:2px solid #bca9ca; padding:.6rem; border-radius:7px; background:white; overflow-wrap:anywhere; }
+.llm-token small { display:block; }
+.llm-bars { margin:1rem 0; }
+.llm-bar-row { display:grid; grid-template-columns:minmax(4rem,1fr) minmax(4rem,2fr) 4.5rem; gap:.5rem; align-items:center; padding:.35rem 0; }
+.llm-bar-row meter { width:100%; height:1.5rem; accent-color:#4b286d; }
+.llm-scroll { overflow:auto; max-width:100%; }
+.llm-body table { width:100%; border-collapse:collapse; margin:.7rem 0; }
+.llm-body th,.llm-body td { padding:.6rem; border:1px solid #d2c6dc; text-align:left; }
+.llm-body .selected { background:#eee3f5; outline:2px solid #4b286d; }
+.llm-body pre { white-space:pre-wrap; overflow-wrap:anywhere; }
+.llm-body svg { width:100%; display:block; }
+.llm-body [hidden] { display:none !important; }
+.llm-controls [hidden] { display:none !important; }
+.llm-body .llm-output { font-size:1.35rem; padding:1rem; background:white; border-left:4px solid #4b286d; overflow-wrap:anywhere; }
+.llm-body .llm-warning { border-left:4px solid #985000; padding:.8rem; background:#fff5e6; }
+@media(max-width:600px) { .llm-panel { padding:.8rem; } .llm-body th,.llm-body td { padding:.4rem; } }
