@@ -16,7 +16,21 @@ const status=()=>page.locator('[data-slot=status]').innerText();
 const shot=async slug=>{await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:path.join(out,slug+'.png'),fullPage:true});};
 const slugs=['tokenizer','next-token','temperature','embedding','attention','causal-mask','self-supervised','rag','context-figure','vector-arithmetic','word-order','multi-head'];
 try{
-await open('');assert.equal(await page.locator('.card.available').count(),12);await shot('index');
+await open('');
+const cards = page.locator('.card.available');
+const codes = slugs.map((_, index) => 'JS' + String(index + 1).padStart(2, '0'));
+assert.deepEqual(await cards.locator('.demo-icon').allTextContents(), codes);
+assert.deepEqual(await cards.evaluateAll(items => items.map(item => item.getAttribute('href'))),
+  slugs.map(slug => '#/sessions/08/' + slug));
+await shot('index');
+for (const [index, slug] of slugs.entries()) {
+  await open(slug);
+  const neighbors = [slugs[index - 1], slugs[index + 1]].filter(Boolean);
+  const links = page.locator('nav.demo-navigation a[href^="#/sessions/08/"]');
+  assert.deepEqual(await links.evaluateAll(items => items.map(item => item.getAttribute('href'))),
+    neighbors.map(neighbor => '#/sessions/08/' + neighbor));
+}
+report.push('JS01–JS12: numeric card order and adjacent links for every demo');
 for(const session of ['06','07']){await page.goto(base+'#/sessions/'+session);await page.locator('a.back[href="#/sessions/08"]').click();await page.waitForFunction(()=>document.querySelector('h1')?.textContent==='生成AIはなぜ自然な文章を作れるのか？');assert.equal(await page.locator('.card.available').count(),12);}report.push('12-demo index and navigation from sessions 06/07');
 await open('tokenizer');assert.equal(await page.locator('[data-token]').count(),14);await page.locator('[data-token="4"]').click();assert.match(await page.locator('[data-details]').innerText(),/e5 82/);assert.match(await page.locator('[data-details]').innerText(),/不可/);await page.locator('[data-english]').click();assert.equal(await page.locator('[data-token]').count(),4);await page.locator('textarea').fill('<img src=x onerror=alert(1)>😀\n');await page.locator('[data-analyze]').click();assert.equal(await page.locator('[data-tokens] img').count(),0);await page.locator('textarea').fill('');await page.locator('[data-analyze]').click();assert.equal(await page.locator('[data-token]').count(),0);await reset();assert.equal(await page.locator('[data-token]').count(),14);await shot('tokenizer');report.push('tokenizer: IDs, bytes, English, Unicode, empty input, escaped HTML, reset');
 await open('next-token');await page.locator('[data-candidate="2"]').click();assert.match(await page.locator('[data-text]').innerText(),/忘れて$/);assert.match(await page.locator('[data-candidate="0"]').innerText(),/困りました/);await reset();await page.locator('[data-action=start]').click();await page.waitForFunction(()=>document.querySelector('[data-progress]')?.textContent.includes('生成終了'),{},{timeout:7000});assert(await page.locator('[data-action=start]').isDisabled());assert.equal(await page.locator('[data-history] li').count(),4);await reset();await page.locator('[data-mode]').selectOption('sampling');await step();assert.equal(await page.locator('[data-history] li').count(),1);await reset();await shot('next-token');report.push('generation: conditional branch, both selection modes, auto EOS, history, reset');
