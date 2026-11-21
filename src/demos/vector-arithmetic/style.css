@@ -1,0 +1,6 @@
+.analogy-plot { max-height: 27rem; background: white; }
+.analogy-plot .dot { fill: #483052; }
+.analogy-plot [data-dot] { touch-action: none; cursor: grab; }
+.analogy-plot [data-dot][aria-pressed=true] .dot { fill: #9b571b; }
+.analogy-plot [data-dot] text { font: bold 15px system-ui; paint-order: stroke; stroke: white; stroke-width: 4px; fill: #34243b; }
+.analogy-plot [data-grid] text { font: 13px system-ui; fill: #504758; }

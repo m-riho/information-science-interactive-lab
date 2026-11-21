@@ -22,7 +22,7 @@ export function mountEmbedding(root: HTMLElement): () => void {
       <label>第1成分 x <input data-coordinate="x" type="number" min="0" max="10" step="0.1" inputmode="decimal"></label>
       <label>第2成分 y <input data-coordinate="y" type="number" min="0" max="10" step="0.1" inputmode="decimal"></label>
       <p>座標は0〜10。変更後、Enterまたは別の欄への移動で反映します。</p><h3>他の単語までの距離</h3><div data-distances></div><p>ユークリッド距離<br>d = √((x₁ − x₂)² + (y₁ − y₂)²)</p><p>この距離は表示した座標から実際に計算しています。点の配置は架空です。</p></section></div>
-      <p>実際のEmbeddingは学習された多次元の数値表現です。この図の距離だけで単語の意味のすべてを表せるわけではありません。点を動かす操作もモデルの学習ではありません。</p>`;
+      <p>実際のEmbeddingは学習された多次元の数値表現です。この図の距離だけで単語の意味のすべてを表せるわけではありません。点を動かす操作もモデルの学習ではありません。</p><p><a href="#/sessions/08/vector-arithmetic">単語ベクトルの加減算を試す</a></p>`;
   const svg = layout.body.querySelector<SVGSVGElement>("svg")!;
   const vector = layout.body.querySelector<HTMLElement>("[data-vector]")!;
   const distances = layout.body.querySelector<HTMLElement>("[data-distances]")!;

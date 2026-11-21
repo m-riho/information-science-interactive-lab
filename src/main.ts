@@ -8,6 +8,9 @@ import { mountCausalMask } from "./demos/causal-mask/view";
 import { mountContextFigure } from "./demos/context-figure/view";
 import { mountRag } from "./demos/rag/view";
 import { mountSelfSupervised } from "./demos/self-supervised/view";
+import { mountVectorArithmetic } from "./demos/vector-arithmetic/view";
+import { mountWordOrder } from "./demos/word-order/view";
+import { mountMultiHead } from "./demos/multi-head/view";
 import { mountEmbedding } from "./demos/embedding/view";
 import { mountGradientDescent } from "./demos/gradient-descent/view";
 import { mountDigitTraining } from "./demos/digit-training/view";
@@ -96,6 +99,9 @@ function render(): void {
     const mounts: Record<string, (root: HTMLElement) => () => void> = {
       tokenizer: mountTokenizer, "next-token": mountNextToken,
       temperature: mountTemperature, embedding: mountEmbedding,
+      "vector-arithmetic": mountVectorArithmetic,
+      "word-order": mountWordOrder,
+      "multi-head": mountMultiHead,
       attention: mountAttention, "causal-mask": mountCausalMask,
       "self-supervised": mountSelfSupervised, rag: mountRag, "context-figure": mountContextFigure,
     };

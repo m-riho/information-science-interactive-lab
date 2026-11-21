@@ -4,7 +4,7 @@
 
 ## 第8回：生成AIはなぜ自然な文章を作れるのか？
 
-一覧は `#/sessions/08`。トークナイザ、次トークン予測、Temperature、Embedding、Attention、Causal Mask、自己教師あり学習、RAG、Bと13の見え方の9本を追加しました。第6・7回からの移動リンクもあります。
+一覧は `#/sessions/08`。トークナイザ、次トークン予測、Temperature、Embedding、Attention、Causal Mask、自己教師あり学習、RAG、Bと13の見え方、単語ベクトルの加減算、語順と位置情報、複数のAttentionヘッドの12本を追加しました。第6・7回からの移動リンクもあります。
 
 トークナイザは `o200k_base` の実計算と生バイトを表示します。AttentionとTemperatureは教材用の数値から実際に計算します。文章生成とRAGは固定した分布・資料・事前回答による模式例、Embeddingは操作可能な2次元模式図です。
 
