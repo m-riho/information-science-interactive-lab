@@ -1,0 +1,22 @@
+.ngram-body { overflow-wrap: anywhere; }
+.ngram-definition { font-size: 1.2rem; line-height: 1.9; }
+.ngram-body input[type="text"] { display: block; width: 100%; min-height: 44px; padding: .65rem; border: 1px solid var(--brand); border-radius: 6px; font: inherit; }
+.ngram-tabs { display: flex; flex-wrap: wrap; gap: .3rem; margin: 1.4rem 0; }
+.ngram-tabs [role="tab"] { flex: 1 1 12rem; padding: .7rem; }
+.ngram-tabs [aria-selected="true"] { background: var(--brand); color: white; text-decoration: underline; text-underline-offset: .3em; }
+.ngram-window { background: white; padding: 1rem .4rem; border: 1px solid var(--border); border-radius: 8px; }
+.ngram-sentence { display: flex; width: max-content; padding: .4rem; }
+.ngram-word { padding: .65rem .45rem; border-top: 3px solid transparent; border-bottom: 3px solid transparent; white-space: nowrap; }
+.ngram-in-window { background: var(--brand-light); border-top-color: var(--brand); border-bottom-color: var(--brand); font-weight: 700; }
+.ngram-window-first { border-left: 3px solid var(--brand); border-radius: 8px 0 0 8px; }
+.ngram-window-last { border-right: 3px solid var(--brand); border-radius: 0 8px 8px 0; }
+.ngram-distribution { min-width: 280px; }
+.ngram-distribution td:last-child { width: 48%; }
+.ngram-distribution svg { margin-top: .35rem; height: 16px; }
+.ngram-bar { fill: var(--brand); }
+.ngram-bar-track { fill: var(--brand-light); }
+.ngram-formula { padding: .8rem; background: var(--brand-light); font-weight: 700; }
+.ngram-quiz { border-top: 2px solid var(--border); margin-top: 1.5rem; padding-top: .7rem; }
+.ngram-body [role="tabpanel"] { outline-offset: 4px; }
+.ngram-body [data-comparison] td { min-width: 5rem; }
+@media (max-width: 600px) { .ngram-tabs [role="tab"] { flex-basis: 100%; text-align: left; } }

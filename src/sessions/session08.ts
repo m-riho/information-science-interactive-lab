@@ -19,6 +19,7 @@ export const session08Demos: readonly Session08Demo[] = [
   { code: "JS10", slug: "vector-arithmetic", title: "単語ベクトルの加減算", slides: "24–25", usage: "授業内使用", goal: "矢印をたどり、計算の終点にどの単語が近いか確かめる。" },
   { code: "JS11", slug: "word-order", title: "語順と位置情報", slides: "28", usage: "授業内使用", goal: "二人の名前を入れ替え、同じ語の数値表現を比べる。" },
   { code: "JS12", slug: "multi-head", title: "複数のAttentionヘッド", slides: "35", usage: "授業内使用", goal: "同じ入力から二つのヘッドが集める情報を見比べる。" },
+  { code: "JS13", slug: "ngram", title: "n-gram言語モデル", slides: "n-gram（補足教材）", usage: "授業内使用", goal: "連続する単語の抽出・出現頻度・文章生成を体験し、文脈長と未知の並びによる限界を説明する。" },
 ].map(demo => ({ ...demo, usage: demo.usage as Session08Demo["usage"], description: demo.goal, keywords: "生成AI・LLM", phase: 1, ready: true }));
 export const session08Config: DemoSession = {
   number: "08", path: session08Path, demos: session08Demos,

@@ -1,0 +1,13 @@
+{
+  "browser": "157.0.8103.79",
+  "base": "http://127.0.0.1:4186/information-science-interactive-lab/",
+  "report": [
+    "Extraction n=1–5, sliding frame, duplicate counts, sentence boundary, empty input, focus at last step",
+    "Frequency 2/3 + 1/3, unknown context, context selection, pending edits vs retraining, unigram, empty corpus",
+    "Greedy and sampling generation, EOS excluded from text, history, automatic EOS and completed controls, unknown/short start",
+    "30-word limit including start, overlong start rejected, pause, tab switch, reduced motion retained on reset, simulated visibility event, n change",
+    "Context window and all n comparison, known/unknown input, all four quizzes with feedback, keyboard arrows/Home/End",
+    "Escaped HTML input, full reset, 390px viewport all tabs, route disposal/remount, direct-link reload under production subpath, OS reduced motion",
+    "No page errors. Chrome headless only; visibility was simulated; no physical mobile or deployed GitHub Pages check."
+  ]
+}

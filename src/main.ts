@@ -1,4 +1,5 @@
 import { session08Demos, session08Path, session08Title } from "./sessions/session08";
+import { mountNgram } from "./demos/ngram/view";
 import { renderSession08 } from "./sessions/session08View";
 import { mountTokenizer } from "./demos/tokenizer/view";
 import { mountNextToken } from "./demos/next-token/view";
@@ -102,6 +103,7 @@ function render(): void {
       "vector-arithmetic": mountVectorArithmetic,
       "word-order": mountWordOrder,
       "multi-head": mountMultiHead,
+      ngram: mountNgram,
       attention: mountAttention, "causal-mask": mountCausalMask,
       "self-supervised": mountSelfSupervised, rag: mountRag, "context-figure": mountContextFigure,
     };
